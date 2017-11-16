@@ -51,6 +51,7 @@ public class SubjectFrame extends Frame{
         interCons.weightx=0.1;
         interCons.weighty=0.1;
 
+        //Panel for the INSERT subPanel
         Panel paneInsert=new Panel(new GridBagLayout());
         paneInsert.setBackground(Color.green);
         Label insertL=new Label("Please select 'type' of Question and Insert");
@@ -61,12 +62,42 @@ public class SubjectFrame extends Frame{
         constraint.gridx=0;
         constraint.gridy=0;
         paneInsert.add(insertL,constraint);
+
+        CheckboxGroup cbgInsert=new CheckboxGroup();
+        Checkbox mcqI,fillInI,tFI;
+        Font optFontI=new Font("Plain",Font.BOLD,15);
+        mcqI=new Checkbox("MCQ",cbgInsert,true);
+        tFI=new Checkbox("True/False",cbgInsert,false);
+        fillInI=new Checkbox("Fill in Blanks",cbgInsert,false);
+        mcqI.setFont(optFontI);
+        tFI.setFont(optFontI);
+        fillInI.setFont(optFontI);
+        constraint.anchor=GridBagConstraints.WEST;
+        constraint.gridx=0;
+        constraint.gridy=1;
+        paneInsert.add(mcqI,constraint);
+        constraint.gridx=0;
+        constraint.gridy=2;
+        paneInsert.add(tFI,constraint);
+        constraint.gridx=0;
+        constraint.gridy=3;
+        paneInsert.add(fillInI,constraint);
+
+        Button InsertB=new Button("Insert!!");
+        InsertB.setFont(optFontI);
+        constraint.anchor=GridBagConstraints.EAST;
+        constraint.gridx=0;
+        constraint.gridy=4;
+        paneInsert.add(InsertB,constraint);
+
         interCons.gridx=0;
         interCons.gridy=0;
         paneC.add(paneInsert,interCons);
 
+        //Panel for Generate subPanel
         Panel paneGenerate=new Panel(new GridBagLayout());
         paneGenerate.setBackground(Color.yellow);
+
         Label generateL=new Label("Please select 'type' of Question to Generate Question Bank");
         generateL.setFont(insertLF);
         constraint.weighty=0.1;
@@ -74,12 +105,42 @@ public class SubjectFrame extends Frame{
         constraint.gridx=0;
         constraint.gridy=0;
         paneGenerate.add(generateL,constraint);
+
+        CheckboxGroup cbgGenerate=new CheckboxGroup();
+        Checkbox mcq,fillIn,tF;
+        Font optFont=new Font("Plain",Font.BOLD,15);
+        mcq=new Checkbox("MCQ",cbgGenerate,true);
+        tF=new Checkbox("True/False",cbgGenerate,false);
+        fillIn=new Checkbox("Fill in Blanks",cbgGenerate,false);
+        mcq.setFont(optFont);
+        tF.setFont(optFont);
+        fillIn.setFont(optFont);
+        constraint.anchor=GridBagConstraints.WEST;
+        constraint.gridx=0;
+        constraint.gridy=1;
+        paneGenerate.add(mcq,constraint);
+        constraint.gridx=0;
+        constraint.gridy=2;
+        paneGenerate.add(tF,constraint);
+        constraint.gridx=0;
+        constraint.gridy=3;
+        paneGenerate.add(fillIn,constraint);
+
+        Button generateB=new Button("Generate!!");
+        generateB.setFont(optFont);
+        constraint.anchor=GridBagConstraints.EAST;
+        constraint.gridx=0;
+        constraint.gridy=4;
+        paneGenerate.add(generateB,constraint);
+
         interCons.gridx=1;
         interCons.gridy=0;
         paneC.add(paneGenerate,interCons);
 
+        //Panel for Modify subPanel
         Panel paneModify=new Panel(new GridBagLayout());
         paneModify.setBackground(Color.orange);
+
         Label modifyL=new Label("Please Click to modify existing Question Bank");
         modifyL.setFont(insertLF);
         constraint.weighty=0.1;
@@ -87,12 +148,42 @@ public class SubjectFrame extends Frame{
         constraint.gridx=0;
         constraint.gridy=0;
         paneModify.add(modifyL,constraint);
+
+        CheckboxGroup cbgModify=new CheckboxGroup();
+        Checkbox mcqM,fillInM,tFM;
+        Font optFontM=new Font("Plain",Font.BOLD,15);
+        mcqM=new Checkbox("MCQ",cbgModify,true);
+        tFM=new Checkbox("True/False",cbgModify,false);
+        fillInM=new Checkbox("Fill in Blanks",cbgModify,false);
+        mcqM.setFont(optFontM);
+        tFM.setFont(optFontM);
+        fillInM.setFont(optFontM);
+        constraint.anchor=GridBagConstraints.WEST;
+        constraint.gridx=0;
+        constraint.gridy=1;
+        paneModify.add(mcqM,constraint);
+        constraint.gridx=0;
+        constraint.gridy=2;
+        paneModify.add(tFM,constraint);
+        constraint.gridx=0;
+        constraint.gridy=3;
+        paneModify.add(fillInM,constraint);
+
+        Button ModifyB=new Button("Modify!!");
+        ModifyB.setFont(optFontM);
+        constraint.anchor=GridBagConstraints.EAST;
+        constraint.gridx=0;
+        constraint.gridy=4;
+        paneModify.add(ModifyB,constraint);
+
         interCons.gridx=0;
         interCons.gridy=1;
         paneC.add(paneModify,interCons);
 
+        //Panel for Delete Subpanel
         Panel paneDelete=new Panel(new GridBagLayout());
         paneDelete.setBackground(Color.red);
+
         Label deleteL=new Label("Please Click to delete question in existing Question Bank");
         deleteL.setFont(insertLF);
         constraint.weighty=0.1;
@@ -100,6 +191,34 @@ public class SubjectFrame extends Frame{
         constraint.gridx=0;
         constraint.gridy=0;
         paneDelete.add(deleteL,constraint);
+
+        CheckboxGroup cbgDelete=new CheckboxGroup();
+        Checkbox mcqD,fillInD,tFD;
+        Font optFontD=new Font("Plain",Font.BOLD,15);
+        mcqD=new Checkbox("MCQ",cbgDelete,true);
+        tFD=new Checkbox("True/False",cbgDelete,false);
+        fillInD=new Checkbox("Fill in Blanks",cbgDelete,false);
+        mcqD.setFont(optFontD);
+        tFD.setFont(optFontD);
+        fillInD.setFont(optFontD);
+        constraint.anchor=GridBagConstraints.WEST;
+        constraint.gridx=0;
+        constraint.gridy=1;
+        paneDelete.add(mcqD,constraint);
+        constraint.gridx=0;
+        constraint.gridy=2;
+        paneDelete.add(tFD,constraint);
+        constraint.gridx=0;
+        constraint.gridy=3;
+        paneDelete.add(fillInD,constraint);
+
+        Button DeleteB=new Button("Delete!!");
+        DeleteB.setFont(optFontD);
+        constraint.anchor=GridBagConstraints.EAST;
+        constraint.gridx=0;
+        constraint.gridy=4;
+        paneDelete.add(DeleteB,constraint);
+
         interCons.gridx=1;
         interCons.gridy=1;
         paneC.add(paneDelete,interCons);
