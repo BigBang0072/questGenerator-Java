@@ -3,8 +3,8 @@ import java.awt.*;
 
 class LoginFrame extends Frame{
     LoginFrame(){
+        //Main Layout is the Border Layout and nested inside is other ones.
         setLayout(new BorderLayout());
-
 
         //TOP PANEL
         Panel paneT=new Panel(new GridBagLayout());
@@ -45,6 +45,7 @@ class LoginFrame extends Frame{
         Panel paneC=new Panel(new GridBagLayout());
         paneC.setBackground(Color.lightGray);
 
+        //UserName Entring Area
         Label userNameL=new Label("UserName : ",Label.CENTER);
         Font userFont=new Font("Plain",Font.BOLD,15);
         userNameL.setFont(userFont);
@@ -58,6 +59,7 @@ class LoginFrame extends Frame{
         constraint.gridy=0;
         paneC.add(userNameT,constraint);
 
+        //Password Staging area.
         Label passwordL=new Label("Password : ",Label.CENTER);
         //passwordL.setAlignment(Label.RIGHT);
         passwordL.setFont(userFont);
@@ -87,8 +89,6 @@ class LoginFrame extends Frame{
     public Insets getInsets(){
         return new Insets(100,100,100,100);
     }
-}
-class FramesDemo{
     public static void main(String args[]){
         LoginFrame lf=new LoginFrame();
         lf.setVisible(true);
