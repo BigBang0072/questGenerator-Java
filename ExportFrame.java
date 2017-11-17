@@ -17,8 +17,10 @@ public class ExportFrame extends Frame{
         constraint.gridy=0;
         paneT.add(greetL,constraint);
 
+
         Font genFont=new Font("Plain",Font.BOLD,15);
         //Center Panel (main challenge)
+        ScrollPane scrollP=new ScrollPane();
         Panel paneC=new Panel(new GridBagLayout());
         paneC.setBackground(Color.lightGray);
 
@@ -37,10 +39,12 @@ public class ExportFrame extends Frame{
 
             interPanelCon.gridx=0;
             interPanelCon.gridy=i;
-            interPanelCon.weighty=0.1;
+            interPanelCon.weighty=0.5;
             interPanelCon.weightx=0;
             paneC.add(pTemp,interPanelCon);
         }
+        scrollP.add(paneC);
+
 
         //constraint.anchor=GridBagConstraints.CENTER;
 
@@ -77,7 +81,7 @@ public class ExportFrame extends Frame{
 
         add(paneT,BorderLayout.NORTH);
         add(paneS,BorderLayout.SOUTH);
-        add(paneC,BorderLayout.CENTER);
+        add(scrollP,BorderLayout.CENTER);
         setSize(1000,1000);
         setTitle("Generate Questions-Paper");
     }
