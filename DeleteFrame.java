@@ -1,16 +1,14 @@
 import java.lang.*;
 import java.awt.*;
 
-public class ModifyFrame extends Frame{
-    ModifyFrame(String name,int totalQuest){
-        setLayout(new BorderLayout());
-
+public class DeleteFrame extends Frame{
+    DeleteFrame(String name,int totalQuest){
         //Top Panel: coustamary Welcome.
         Panel paneT=new Panel(new GridBagLayout());
         paneT.setBackground(Color.gray);
         GridBagConstraints constraint=new GridBagConstraints();
 
-        Label greetL=new Label(name+"! Please tick the question to Modify (one at a time)");
+        Label greetL=new Label(name+"! Please tick the question to Delete (one at a time)");
         Font greetFont=new Font("Serif",Font.BOLD,18);
         greetL.setFont(greetFont);
         constraint.gridx=0;
@@ -44,22 +42,15 @@ public class ModifyFrame extends Frame{
         Panel paneS=new Panel(new GridBagLayout());
         paneS.setBackground(Color.gray);
 
-        Button modifyB=new Button("Modify");
+        Button modifyB=new Button("Delete");
         modifyB.setFont(genFont);
+        modifyB.setBackground(Color.red);
         constraint.gridx=0;
         constraint.gridy=0;
         constraint.anchor=GridBagConstraints.EAST;
         paneS.add(modifyB,constraint);
         constraint.anchor=GridBagConstraints.CENTER;
 
-        /*//Scroll Bar in EAST Panel
-        Panel paneE=new Panel(new GridBagLayout());
-        paneE.setBackground(Color.cyan);
-        Scrollbar scb=new Scrollbar(Scrollbar.VERTICAL,0,10,0,100);
-        scb.setBackground(Color.gray);
-        //scb.setVisibleAmount(10000);
-        constraint.fill=GridBagConstraints.BOTH;
-        paneE.add(scb,constraint);*/
 
 
         add(paneT,BorderLayout.NORTH);
@@ -67,7 +58,7 @@ public class ModifyFrame extends Frame{
         add(paneC,BorderLayout.CENTER);
         //add(paneE,BorderLayout.EAST);
         setSize(1000,500);
-        setTitle("Modify Existing Questions");
+        setTitle("Delete Existing Questions");
     }
     public Insets getInsets(){
         return new Insets(100,100,100,100);
@@ -75,7 +66,7 @@ public class ModifyFrame extends Frame{
     public static void main(String args[]){
         String name="Abhinav";
         int questCount=20;
-        ModifyFrame mf=new ModifyFrame(name,questCount);
-        mf.setVisible(true);
+        DeleteFrame df=new DeleteFrame(name,questCount);
+        df.setVisible(true);
     }
 }
