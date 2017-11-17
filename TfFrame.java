@@ -8,9 +8,9 @@ public class TfFrame extends Frame{
         //Top Panel
         Panel paneT=new Panel(new GridBagLayout());
         paneT.setBackground(Color.gray);
-        GridBagConstraints constraint=new GridBagConstraints();
+        GridBagConstraints constraint =new GridBagConstraints();
 
-        Label greetL=new Label(name+"! Please type the True/False Question in the space Below");
+        Label greetL=new Label(name+"! Please enter the True/Flase Question in space below");
         Font greetFont=new Font("Serif",Font.BOLD,18);
         greetL.setFont(greetFont);
         constraint.gridx=0;
@@ -21,63 +21,62 @@ public class TfFrame extends Frame{
         Panel paneC=new Panel(new GridBagLayout());
         paneC.setBackground(Color.lightGray);
 
-        Label firstL=new Label("Qustion before 'space' ");
-        Font firstF=new Font("Plain",Font.BOLD,17);
-        firstL.setFont(firstF);
+        Label questL=new Label("Question : ");
+        Font questFont=new Font("Plain",Font.BOLD,15);
+        questL.setFont(questFont);
         constraint.gridx=0;
         constraint.gridy=0;
-        constraint.weightx=0.1;
+        constraint.weightx=0.5;
+        constraint.weighty=0.5;
+        constraint.anchor=GridBagConstraints.WEST;
+        paneC.add(questL,constraint);
+        constraint.anchor=GridBagConstraints.CENTER;
+
+        TextArea questTA=new TextArea(4,70);
+        constraint.gridx=1;
+        constraint.gridy=0;
+        constraint.weightx=0.5;
+        constraint.weighty=0.5;
+        paneC.add(questTA,constraint);
+
+        Label answerL=new Label("Correct Answer : ");
+        answerL.setFont(questFont);
+        constraint.gridx=0;
+        constraint.gridy=1;
+        constraint.weightx=0.5;
         constraint.weighty=0;
-        paneC.add(firstL,constraint);
-        Label secondL=new Label("Question after 'space' ");
-        secondL.setFont(firstF);
-        constraint.gridx=2;
-        constraint.gridy=0;
-        paneC.add(secondL,constraint);
+        constraint.anchor=GridBagConstraints.WEST;
+        paneC.add(answerL,constraint);
+        constraint.anchor=GridBagConstraints.CENTER;
 
-        TextArea firstTA=new TextArea(3,50);
-        TextArea secondTA=new TextArea(3,50);
-        constraint.gridx=0;
+        List tF=new List(2);
+        tF.setFont(questFont);
+        tF.add("True");
+        tF.add("False");
+        constraint.gridx=1;
         constraint.gridy=1;
-        paneC.add(firstTA,constraint);
-        constraint.gridx=2;
-        constraint.gridy=1;
-        paneC.add(secondTA,constraint);
+        paneC.add(tF,constraint);
 
-        //constraint.anchor=GridBagConstraints.WEST;//default
-        Label ansL=new Label("Correct Answer : ");
-        ansL.setFont(firstF);
-        constraint.gridx=0;
-        constraint.gridy=3;
-        constraint.weightx=0.1;
-        constraint.weighty=0.1;
-        paneC.add(ansL,constraint);
-
-        TextField ansF=new TextField(50);
-        constraint.gridx=2;
-        constraint.gridy=3;
-        //constraint.anchor=GridBagConstraints.WEST;//default
-        paneC.add(ansF,constraint);
-
-
-        Button insertB=new Button("Add to Question Bank");
-        insertB.setFont(new Font("Plain",Font.BOLD,16));
-        constraint.gridx=2;
-        constraint.gridy=4;
+        Button insertB=new Button("Add to Question-Bank");
+        insertB.setFont(questFont);
+        constraint.gridx=1;
+        constraint.gridy=2;
+        constraint.weightx=0.5;
+        constraint.weighty=0.5;
         paneC.add(insertB,constraint);
 
 
-        add(paneT,BorderLayout.NORTH);
         add(paneC,BorderLayout.CENTER);
-
+        add(paneT,BorderLayout.NORTH);
         setSize(1000,500);
         setTitle("Insert:True/False-Question");
+
     }
     public Insets getInsets(){
         return new Insets(100,100,100,100);
     }
     public static void main(String args[]){
-        String name="Abhinav";
+        String name="Kalpana";
         TfFrame tf=new TfFrame(name);
         tf.setVisible(true);
     }

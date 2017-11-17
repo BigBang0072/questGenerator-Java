@@ -120,6 +120,7 @@ public class MCQFrame extends Frame{
         paneC.add(ansL,constraint);
 
         List optList=new List(4);
+        optList.setFont(questFont);
         optList.add("a.");
         optList.add("b.");
         optList.add("c.");
