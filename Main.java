@@ -4,7 +4,10 @@ import java.lang.*;
 
 public class Main{
     public static void main(String args[]){
-        LoginFrame lf=new LoginFrame();
+        LoginListener lIsner=new LoginListener();;
+        LoginFrame lf=new LoginFrame(lIsner);
+        WelcomeFrame wf=new WelcomeFrame("Kalpana");
+        lIsner.addFrames(lf,wf);
         lf.setVisible(true);
     }
 }

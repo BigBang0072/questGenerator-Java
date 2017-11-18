@@ -1,9 +1,10 @@
 package frames;
+
 import java.lang.*;
 import java.awt.*;
 
 public class LoginFrame extends Frame{
-    public LoginFrame(){
+    public LoginFrame(LoginListener lIsner){
         //Main Layout is the Border Layout and nested inside is other ones.
         setLayout(new BorderLayout());
 
@@ -28,6 +29,7 @@ public class LoginFrame extends Frame{
 
         //Adding additional registration button
         Button register=new Button("New Registration");
+        register.addActionListener(lIsner);
         Font regFont=new Font("Plain",Font.BOLD,15);
         register.setFont(regFont);
         //constraint.fill=GridBagConstraints.HORIZONTAL;
@@ -74,6 +76,7 @@ public class LoginFrame extends Frame{
         paneC.add(passwordT,constraint);
 
         Button loginB=new Button("Login To Profile");
+        loginB.addActionListener(lIsner);
         loginB.setFont(userFont);
         constraint.gridx=1;
         constraint.gridy=2;
@@ -85,6 +88,7 @@ public class LoginFrame extends Frame{
         setTitle("LOGIN PAGE");
         //setBackground(Color.gray);
         setSize(1000,500);
+        addWindowListener(lIsner);
 
     }
     public Insets getInsets(){
