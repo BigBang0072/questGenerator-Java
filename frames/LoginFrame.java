@@ -4,6 +4,8 @@ import java.lang.*;
 import java.awt.*;
 
 public class LoginFrame extends Frame{
+    TextField userNameF,passwordF;
+
     public LoginFrame(LoginListener lIsner){
         //Main Layout is the Border Layout and nested inside is other ones.
         setLayout(new BorderLayout());
@@ -58,6 +60,7 @@ public class LoginFrame extends Frame{
         constraint.weighty=0;
         paneC.add(userNameL,constraint);
         TextField userNameT=new TextField(20);
+        userNameF=userNameT;
         constraint.gridx=2;
         constraint.gridy=0;
         paneC.add(userNameT,constraint);
@@ -70,6 +73,7 @@ public class LoginFrame extends Frame{
         constraint.gridy=1;
         paneC.add(passwordL,constraint);
         TextField passwordT=new TextField(20);
+        passwordF=passwordT;
         passwordT.setEchoChar('*');
         constraint.gridx=2;
         constraint.gridy=1;

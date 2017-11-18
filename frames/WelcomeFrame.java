@@ -3,7 +3,8 @@ import java.lang.*;
 import java.awt.*;
 
 public class WelcomeFrame extends Frame{
-    public WelcomeFrame(String name){
+
+    public WelcomeFrame(String name,WelcomeListener wIsner){
         setLayout(new BorderLayout());
 
         //Top Panel
@@ -20,6 +21,7 @@ public class WelcomeFrame extends Frame{
         constraint.gridy=0;
         paneT.add(greetL,constraint);
         Button logoutB=new Button("Logout");//Button to Logout
+        logoutB.addActionListener(wIsner);
         Font logoutFont=new Font("Plain",Font.BOLD,15);
         logoutB.setFont(logoutFont);
         constraint.gridx=2;
@@ -40,6 +42,7 @@ public class WelcomeFrame extends Frame{
         paneC.add(infoL,constraint);
 
         Button compB=new Button("Computer Science");
+        compB.addActionListener(wIsner);
         Font subFont=new Font("Plain",Font.BOLD,15);
         compB.setFont(subFont);
         constraint.weightx=0;
@@ -49,6 +52,7 @@ public class WelcomeFrame extends Frame{
         paneC.add(compB,constraint);
 
         Button phyB=new Button("Physics");
+        phyB.addActionListener(wIsner);
         phyB.setFont(subFont);
         constraint.weightx=0;
         constraint.weighty=0;
@@ -68,6 +72,7 @@ public class WelcomeFrame extends Frame{
         paneS.setBackground(Color.white);
 
         Button addSub=new Button("Add Subject");
+        addSub.addActionListener(wIsner);
         addSub.setFont(subFont);
         constraint.weightx=0.1;
         constraint.weighty=0;
@@ -76,6 +81,7 @@ public class WelcomeFrame extends Frame{
         paneS.add(addSub,constraint);
 
         Button deleteSub=new Button("Remove Subject");
+        deleteSub.addActionListener(wIsner);
         deleteSub.setFont(subFont);
         constraint.weightx=0.1;
         constraint.weighty=0;
@@ -86,12 +92,12 @@ public class WelcomeFrame extends Frame{
 
 
 
-
         add(paneT,BorderLayout.NORTH);
         add(paneC,BorderLayout.CENTER);
         add(paneS,BorderLayout.SOUTH);
         setTitle("WelcomePage");
         setSize(1000,600);
+        addWindowListener(wIsner);
     }
     public Insets getInsets(){
         return new Insets(100,100,100,100);
