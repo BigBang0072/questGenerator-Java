@@ -3,7 +3,7 @@ import java.lang.*;
 import java.awt.*;
 
 public class SubjectFrame extends Frame{
-    public SubjectFrame(String name,String subject){
+    public SubjectFrame(String name,String subject,SubjectListener sIsner){
         setLayout(new BorderLayout());
 
         //Top Panel
@@ -21,6 +21,7 @@ public class SubjectFrame extends Frame{
         paneT.add(greetL,constraint);
 
         Button goBack=new Button("Go Back");
+        goBack.addActionListener(sIsner);
         Font goBackFont=new Font("Plain",Font.BOLD,15);
         goBack.setFont(goBackFont);
         constraint.gridx=2;
@@ -28,6 +29,7 @@ public class SubjectFrame extends Frame{
         paneT.add(goBack,constraint);
 
         Button logoutB=new Button("Logout");//Button to Logout
+        logoutB.addActionListener(sIsner);
         logoutB.setFont(goBackFont);
         constraint.gridx=3;
         constraint.gridy=0;
@@ -68,8 +70,11 @@ public class SubjectFrame extends Frame{
         Checkbox mcqI,fillInI,tFI;
         Font optFontI=new Font("Plain",Font.BOLD,15);
         mcqI=new Checkbox("MCQ",cbgInsert,true);
+        mcqI.addItemListener(sIsner);
         tFI=new Checkbox("True/False",cbgInsert,false);
+        tFI.addItemListener(sIsner);
         fillInI=new Checkbox("Fill in Blanks",cbgInsert,false);
+        fillInI.addItemListener(sIsner);
         mcqI.setFont(optFontI);
         tFI.setFont(optFontI);
         fillInI.setFont(optFontI);
@@ -85,6 +90,7 @@ public class SubjectFrame extends Frame{
         paneInsert.add(fillInI,constraint);
 
         Button InsertB=new Button("Insert!!");
+        InsertB.addActionListener(sIsner);
         InsertB.setFont(optFontI);
         constraint.anchor=GridBagConstraints.EAST;
         constraint.gridx=0;
@@ -111,8 +117,11 @@ public class SubjectFrame extends Frame{
         Checkbox mcq,fillIn,tF;
         Font optFont=new Font("Plain",Font.BOLD,15);
         mcq=new Checkbox("MCQ",cbgGenerate,true);
+        mcq.addItemListener(sIsner);
         tF=new Checkbox("True/False",cbgGenerate,false);
+        tF.addItemListener(sIsner);
         fillIn=new Checkbox("Fill in Blanks",cbgGenerate,false);
+        fillIn.addItemListener(sIsner);
         mcq.setFont(optFont);
         tF.setFont(optFont);
         fillIn.setFont(optFont);
@@ -128,6 +137,7 @@ public class SubjectFrame extends Frame{
         paneGenerate.add(fillIn,constraint);
 
         Button generateB=new Button("Generate!!");
+        generateB.addActionListener(sIsner);
         generateB.setFont(optFont);
         constraint.anchor=GridBagConstraints.EAST;
         constraint.gridx=0;
@@ -154,8 +164,11 @@ public class SubjectFrame extends Frame{
         Checkbox mcqM,fillInM,tFM;
         Font optFontM=new Font("Plain",Font.BOLD,15);
         mcqM=new Checkbox("MCQ",cbgModify,true);
+        mcqM.addItemListener(sIsner);
         tFM=new Checkbox("True/False",cbgModify,false);
+        tFM.addItemListener(sIsner);
         fillInM=new Checkbox("Fill in Blanks",cbgModify,false);
+        fillInM.addItemListener(sIsner);
         mcqM.setFont(optFontM);
         tFM.setFont(optFontM);
         fillInM.setFont(optFontM);
@@ -171,6 +184,7 @@ public class SubjectFrame extends Frame{
         paneModify.add(fillInM,constraint);
 
         Button ModifyB=new Button("Modify!!");
+        ModifyB.addActionListener(sIsner);
         ModifyB.setFont(optFontM);
         constraint.anchor=GridBagConstraints.EAST;
         constraint.gridx=0;
@@ -197,8 +211,11 @@ public class SubjectFrame extends Frame{
         Checkbox mcqD,fillInD,tFD;
         Font optFontD=new Font("Plain",Font.BOLD,15);
         mcqD=new Checkbox("MCQ",cbgDelete,true);
+        mcqD.addItemListener(sIsner);
         tFD=new Checkbox("True/False",cbgDelete,false);
+        tFD.addItemListener(sIsner);
         fillInD=new Checkbox("Fill in Blanks",cbgDelete,false);
+        fillInD.addItemListener(sIsner);
         mcqD.setFont(optFontD);
         tFD.setFont(optFontD);
         fillInD.setFont(optFontD);
@@ -214,6 +231,7 @@ public class SubjectFrame extends Frame{
         paneDelete.add(fillInD,constraint);
 
         Button DeleteB=new Button("Delete!!");
+        DeleteB.addActionListener(sIsner);
         DeleteB.setFont(optFontD);
         constraint.anchor=GridBagConstraints.EAST;
         constraint.gridx=0;

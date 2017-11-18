@@ -20,7 +20,7 @@ public class LoginListener extends WindowAdapter implements ActionListener{
             //This conditional chek will be done from database of user.
             if(reqUserName.equals(user) && reqPassword.equals(password)){
                 lf.setVisible(false);
-                WelcomeListener wIsner=new WelcomeListener(lf);
+                WelcomeListener wIsner=new WelcomeListener(lf,reqUserName);
                 wf=new WelcomeFrame(reqUserName,wIsner);
                 wIsner.addFrames(wf);
                 //handler of Welcome Frame.
@@ -33,7 +33,7 @@ public class LoginListener extends WindowAdapter implements ActionListener{
             String reqUserName=lf.userNameF.getText();
             String reqPassword=lf.passwordF.getText();
             //Have to add the the new User to database and initialize its directory.
-            WelcomeListener wIsner=new WelcomeListener(lf);
+            WelcomeListener wIsner=new WelcomeListener(lf,reqUserName);
             wf=new WelcomeFrame(reqUserName,wIsner);
             wIsner.addFrames(wf);
             //wf's handler will be defined here
