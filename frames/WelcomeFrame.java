@@ -1,8 +1,9 @@
+package frames;
 import java.lang.*;
 import java.awt.*;
 
 public class WelcomeFrame extends Frame{
-    WelcomeFrame(String name){
+    public WelcomeFrame(String name){
         setLayout(new BorderLayout());
 
         //Top Panel
@@ -95,9 +96,10 @@ public class WelcomeFrame extends Frame{
     public Insets getInsets(){
         return new Insets(100,100,100,100);
     }
+    /*
     public static void main(String args[]){
         String name="Abhinav";
         WelcomeFrame wf=new WelcomeFrame(name);
         wf.setVisible(true);
-    }
+    }*/
 }

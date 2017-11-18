@@ -1,8 +1,9 @@
+package frames;
 import java.lang.*;
 import java.awt.*;
 
 public class FillFrame extends Frame{
-    FillFrame(String name){
+    public FillFrame(String name){
         setLayout(new BorderLayout());
 
         //Top Panel
@@ -76,9 +77,10 @@ public class FillFrame extends Frame{
     public Insets getInsets(){
         return new Insets(100,100,100,100);
     }
+    /*
     public static void main(String args[]){
         String name="Abhinav";
         FillFrame f=new FillFrame(name);
         f.setVisible(true);
-    }
+    }*/
 }

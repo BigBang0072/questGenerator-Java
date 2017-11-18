@@ -1,8 +1,9 @@
+package frames;
 import java.lang.*;
 import java.awt.*;
 
 public class DeleteFrame extends Frame{
-    DeleteFrame(String name,int totalQuest){
+    public DeleteFrame(String name,int totalQuest){
         //Top Panel: coustamary Welcome.
         Panel paneT=new Panel(new GridBagLayout());
         paneT.setBackground(Color.gray);
@@ -63,10 +64,11 @@ public class DeleteFrame extends Frame{
     public Insets getInsets(){
         return new Insets(100,100,100,100);
     }
+    /*
     public static void main(String args[]){
         String name="Abhinav";
         int questCount=20;
         DeleteFrame df=new DeleteFrame(name,questCount);
         df.setVisible(true);
-    }
+    }*/
 }

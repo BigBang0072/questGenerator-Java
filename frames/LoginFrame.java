@@ -1,8 +1,9 @@
+package frames;
 import java.lang.*;
 import java.awt.*;
 
-class LoginFrame extends Frame{
-    LoginFrame(){
+public class LoginFrame extends Frame{
+    public LoginFrame(){
         //Main Layout is the Border Layout and nested inside is other ones.
         setLayout(new BorderLayout());
 
@@ -89,8 +90,10 @@ class LoginFrame extends Frame{
     public Insets getInsets(){
         return new Insets(100,100,100,100);
     }
+    /*
     public static void main(String args[]){
         LoginFrame lf=new LoginFrame();
         lf.setVisible(true);
     }
+    */
 }

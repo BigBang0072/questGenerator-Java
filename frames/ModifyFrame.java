@@ -1,8 +1,10 @@
+package frames;
+
 import java.lang.*;
 import java.awt.*;
 
 public class ModifyFrame extends Frame{
-    ModifyFrame(String name,int totalQuest){
+    public ModifyFrame(String name,int totalQuest){
         setLayout(new BorderLayout());
 
         //Top Panel: coustamary Welcome.
@@ -72,10 +74,11 @@ public class ModifyFrame extends Frame{
     public Insets getInsets(){
         return new Insets(100,100,100,100);
     }
+    /*
     public static void main(String args[]){
         String name="Abhinav";
         int questCount=20;
         ModifyFrame mf=new ModifyFrame(name,questCount);
         mf.setVisible(true);
-    }
+    }*/
 }

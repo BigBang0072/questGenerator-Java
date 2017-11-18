@@ -1,8 +1,9 @@
+package frames;
 import java.lang.*;
 import java.awt.*;
 
 public class SubjectFrame extends Frame{
-    SubjectFrame(String name,String subject){
+    public SubjectFrame(String name,String subject){
         setLayout(new BorderLayout());
 
         //Top Panel
@@ -236,10 +237,11 @@ public class SubjectFrame extends Frame{
     public Insets getInsets(){
         return new Insets(60,100,100,100);
     }
+    /*
     public static void main(String args[]){
         String subject="Physics";
         String name="Abhinav";
         SubjectFrame sf=new SubjectFrame(name,subject);
         sf.setVisible(true);
-    }
+    }*/
 }

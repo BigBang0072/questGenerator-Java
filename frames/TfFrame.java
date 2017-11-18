@@ -1,8 +1,9 @@
+package frames;
 import java.lang.*;
 import java.awt.*;
 
 public class TfFrame extends Frame{
-    TfFrame(String name){
+    public TfFrame(String name){
         setLayout(new BorderLayout());
 
         //Top Panel
@@ -75,9 +76,10 @@ public class TfFrame extends Frame{
     public Insets getInsets(){
         return new Insets(100,100,100,100);
     }
+    /*
     public static void main(String args[]){
         String name="Kalpana";
         TfFrame tf=new TfFrame(name);
         tf.setVisible(true);
-    }
+    }*/
 }

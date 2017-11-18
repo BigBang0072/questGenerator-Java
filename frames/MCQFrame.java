@@ -1,8 +1,9 @@
+package frames;
 import java.lang.*;
 import java.awt.*;
 
 public class MCQFrame extends Frame{
-    MCQFrame(String name){
+    public MCQFrame(String name){
         setLayout(new BorderLayout());
 
         //Top Panel
@@ -146,9 +147,10 @@ public class MCQFrame extends Frame{
     public Insets getInsets(){
         return new Insets(100,100,100,100);
     }
+    /*
     public static void main(String args[]){
         String name="Kalpana";
         MCQFrame mf=new MCQFrame(name);
         mf.setVisible(true);
-    }
+    }*/
 }
