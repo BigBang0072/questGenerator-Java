@@ -46,6 +46,16 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
         }
         else if(cmd.equals("Modify!!")){
             System.out.println("Inside Modify!!");
+            //Have to establsh database connection in the constructor itself
+            //according to user name.
+            //also accroding to type of question load the appropraite database.
+            int quesNoTemp=20;
+            //We may have to give teh data base handle for it iterate
+            ModifyListener moIsner=new ModifyListener(sf);
+            ModifyFrame mof=new ModifyFrame(user,quesNoTemp,moIsner);
+            moIsner.addFrames(mof);
+            sf.setVisible(false);
+            mof.setVisible(true);
         }
         else if(cmd.equals("Generate!!")){
             System.out.println("Inside Generate!!");

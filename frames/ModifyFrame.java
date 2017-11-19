@@ -4,7 +4,10 @@ import java.lang.*;
 import java.awt.*;
 
 public class ModifyFrame extends Frame{
-    public ModifyFrame(String name,int totalQuest){
+    //Instance Variable
+    Label msgF;
+
+    public ModifyFrame(String name,int totalQuest,ModifyListener moIsner){
         setLayout(new BorderLayout());
 
         //Top Panel: coustamary Welcome.
@@ -20,6 +23,7 @@ public class ModifyFrame extends Frame{
         paneT.add(greetL,constraint);
 
         Button goBackB=new Button("Cancel");
+        goBackB.addActionListener(moIsner);
         Font buttonFont=new Font("Plain",Font.BOLD,15);
         constraint.gridx=1;
         constraint.gridy=0;
@@ -32,6 +36,7 @@ public class ModifyFrame extends Frame{
         paneC.setBackground(Color.lightGray);
 
         List questList=new List(totalQuest);
+        questList.addItemListener(moIsner);
         questList.setFont(genFont);
         for(int i=0;i<totalQuest;i++){
             if(i<9){
@@ -54,12 +59,21 @@ public class ModifyFrame extends Frame{
         paneS.setBackground(Color.gray);
 
         Button modifyB=new Button("Modify");
+        modifyB.addActionListener(moIsner);
         modifyB.setFont(genFont);
-        constraint.gridx=0;
+        constraint.gridx=1;
         constraint.gridy=0;
+        constraint.weightx=0.5;
         constraint.anchor=GridBagConstraints.EAST;
         paneS.add(modifyB,constraint);
         constraint.anchor=GridBagConstraints.CENTER;
+
+        Label msgL=new Label("");
+        this.msgF=msgL;
+        msgL.setFont(new Font("Plain",Font.BOLD,17));
+        constraint.gridx=0;
+        constraint.gridy=0;
+        paneS.add(msgL,constraint);
 
         /*//Scroll Bar in EAST Panel
         Panel paneE=new Panel(new GridBagLayout());
@@ -77,6 +91,7 @@ public class ModifyFrame extends Frame{
         //add(paneE,BorderLayout.EAST);
         setSize(1000,500);
         setTitle("Modify Existing Questions");
+        addWindowListener(moIsner);
     }
     public Insets getInsets(){
         return new Insets(100,100,100,100);
