@@ -1,4 +1,4 @@
-package filehandle;
+package frames.filehandle;
 
 import java.lang.*;
 import java.io.*;

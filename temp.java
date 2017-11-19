@@ -11,7 +11,7 @@ public class temp{
         Box b=new Box();
         Box b2;
         try{
-            FileOutputStream fos=new FileOutputStream("box");
+            FileOutputStream fos=new FileOutputStream("./box/b");
             ObjectOutputStream oos=new ObjectOutputStream(fos);
             oos.writeObject(b);
         }
@@ -19,7 +19,7 @@ public class temp{
             System.out.println(io);
         }
         try{
-            FileInputStream fis=new FileInputStream("box");
+            FileInputStream fis=new FileInputStream("./box/b");
             ObjectInputStream ois=new ObjectInputStream(fis);
             b2=(Box)ois.readObject();
             System.out.println(b2.a+b2.s);

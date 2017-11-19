@@ -3,13 +3,16 @@ package frames;
 import java.lang.*;
 import java.awt.*;
 import java.awt.event.*;
+import frames.filehandle.*;
 
 public class FillListener extends WindowAdapter implements ActionListener{
     SubjectFrame sf;
     FillFrame ff;
+    DatabaseHandler dbms;
 
-    public FillListener(SubjectFrame sf){
+    public FillListener(SubjectFrame sf,DatabaseHandler dbms){
         this.sf=sf;
+        this.dbms=dbms;
     }
 
     public void actionPerformed(ActionEvent buttonPressed){
@@ -26,6 +29,7 @@ public class FillListener extends WindowAdapter implements ActionListener{
             else{
                 System.out.println("Adding to Question Bank");
                 //Have to link with dataBase.
+                dbms.database.addFillQuest(fHalf,lHalf,ansC);
                 ff.setVisible(false);
                 sf.setVisible(true);
             }

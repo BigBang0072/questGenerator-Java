@@ -3,6 +3,8 @@ package frames;
 import java.lang.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
+import frames.filehandle.*;
 
 public class SubjectListener extends WindowAdapter implements ActionListener,ItemListener{
     LoginFrame lf;
@@ -10,18 +12,36 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
     SubjectFrame sf;
     String user;
     int typeQ=1;//1:MCQ, 2:True/Flase, 3:Fill in the Blanks
+    File path;
+    //This is the final resting place of the data base.(origin)
+    DatabaseHandler dbms;
 
     public SubjectListener(LoginFrame lf,WelcomeFrame wf,String user){
         this.lf=lf;
         this.wf=wf;
         this.user=user;
+        String restPath=wf.restPathF.getText();
+        String fullPath="/home/abhinav/Desktop/OOPMiniProject/questGenerator-Java/"+restPath;
+        path=new File(fullPath);
+        if(path.exists()){
+            //else the user defined path will be used to read and write the Question Bank
+            System.out.println("User Path taken");
+            path=path;
+        }
+        else{
+            //our default path.
+            System.out.println("Default Taken");
+            path=new File("/home/abhinav/Desktop/OOPMiniProject/questGenerator-Java/Database");
+        }
+        //database Linked
+        dbms=new DatabaseHandler(user,path);
     }
     public void actionPerformed(ActionEvent buttonPress){
         String cmd=buttonPress.getActionCommand();
         if(cmd.equals("Insert!!")){
             if(typeQ==1){//MCQ
                 System.out.println("Inside Insert(MCQ)!!");
-                MCQListener mIsner=new MCQListener(sf,user);
+                MCQListener mIsner=new MCQListener(sf,user,dbms);
                 MCQFrame mf=new MCQFrame(user,mIsner);
                 mIsner.addFrames(mf);
                 sf.setVisible(false);
@@ -29,7 +49,7 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
             }
             else if(typeQ==2){//True/False
                 System.out.println("Inside Insert (True/False)");
-                FillListener fIsner=new FillListener(sf);
+                FillListener fIsner=new FillListener(sf,dbms);
                 FillFrame ff=new FillFrame(user,fIsner);
                 fIsner.addFrames(ff);
                 sf.setVisible(false);
@@ -37,7 +57,7 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
             }
             else if(typeQ==3){
                 System.out.println("Inside Fill in the Blanks!!");
-                TfListener tIsner=new TfListener(sf);
+                TfListener tIsner=new TfListener(sf,dbms);
                 TfFrame tf=new TfFrame(user,tIsner);
                 tIsner.addFrames(tf);
                 sf.setVisible(false);

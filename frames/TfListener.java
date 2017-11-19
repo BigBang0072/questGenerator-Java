@@ -3,14 +3,17 @@ package frames;
 import java.lang.*;
 import java.awt.*;
 import java.awt.event.*;
+import frames.filehandle.*;
 
 public class TfListener extends WindowAdapter implements ActionListener,ItemListener{
     SubjectFrame sf;
     TfFrame tf;
     String correct="";
+    DatabaseHandler dbms;
 
-    public TfListener(SubjectFrame sf){
+    public TfListener(SubjectFrame sf,DatabaseHandler dbms){
         this.sf=sf;
+        this.dbms=dbms;
     }
 
     public void actionPerformed(ActionEvent buttonPress){
@@ -24,6 +27,8 @@ public class TfListener extends WindowAdapter implements ActionListener,ItemList
                 tf.setVisible(true);//Refreshing
             }
             else{
+                //Linking to the database
+                dbms.database.addTfQuest(quest,correct);//Just in one line
                 System.out.println("Adding to Question Bank");
                 tf.setVisible(false);
                 sf.setVisible(true);

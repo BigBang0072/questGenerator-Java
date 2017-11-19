@@ -1,4 +1,4 @@
-package filehandle;
+package frames.filehandle;
 
 import java.lang.*;
 import java.io.*;
@@ -7,7 +7,7 @@ public class User implements Serializable{
     public MCQQuest[] mcq;//type=1
     public FillQuest[] fill;//type=2
     public TfQuest[] tf;//type=3
-    public int[] size,filled;
+    public int[] size,filled;//Directly contain the place to fill
 
     public User(){
         mcq=new MCQQuest[20];

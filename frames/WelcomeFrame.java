@@ -3,6 +3,8 @@ import java.lang.*;
 import java.awt.*;
 
 public class WelcomeFrame extends Frame{
+    //Instance Variable
+    TextField restPathF;
 
     public WelcomeFrame(String name,WelcomeListener wIsner){
         setLayout(new BorderLayout());
@@ -60,12 +62,36 @@ public class WelcomeFrame extends Frame{
         constraint.gridy=2;
         paneC.add(phyB,constraint);
 
-        Label infoBlank=new Label("");
+        Label infoBlank=new Label("Directory to save QB(Default set):");
+        infoBlank.setFont(new Font("Serif",Font.BOLD,17));
+        constraint.weightx=0;
+        constraint.weighty=0.1;
+        constraint.gridx=0;
+        constraint.gridy=21;//Constaing to register only 20 subjects
+        paneC.add(infoBlank,constraint);
+
+        Label path=new Label("/home/abhinav/Desktop/OOPMiniProject/questGenerator-Java/");
+        path.setFont(subFont);
         constraint.weightx=0;
         constraint.weighty=0.1;
         constraint.gridx=1;
-        constraint.gridy=20;//Constaing to register only 20 subjects
-        paneC.add(infoBlank,constraint);
+        constraint.gridy=21;
+        paneC.add(path,constraint);
+
+        TextField restPath=new TextField("Database",35);
+        this.restPathF=restPath;
+        constraint.gridx=2;
+        constraint.gridy=21;
+        paneC.add(restPath,constraint);
+
+        Label caution=new Label("CAUTION: This path will be used to read & write your database");
+        caution.setFont(subFont);
+        constraint.weightx=0;
+        constraint.weighty=0.1;
+        constraint.gridx=1;
+        constraint.gridy=22;
+        paneC.add(caution,constraint);
+
 
         //SOUTH PANEL
         Panel paneS=new Panel(new GridBagLayout());
@@ -96,7 +122,7 @@ public class WelcomeFrame extends Frame{
         add(paneC,BorderLayout.CENTER);
         add(paneS,BorderLayout.SOUTH);
         setTitle("WelcomePage");
-        setSize(1000,600);
+        setSize(1600,700);
         addWindowListener(wIsner);
     }
     public Insets getInsets(){
