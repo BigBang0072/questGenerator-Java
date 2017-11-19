@@ -9,6 +9,7 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
     WelcomeFrame wf;
     SubjectFrame sf;
     String user;
+    int typeQ=1;//1:MCQ, 2:True/Flase, 3:Fill in the Blanks
 
     public SubjectListener(LoginFrame lf,WelcomeFrame wf,String user){
         this.lf=lf;
@@ -18,12 +19,25 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
     public void actionPerformed(ActionEvent buttonPress){
         String cmd=buttonPress.getActionCommand();
         if(cmd.equals("Insert!!")){
-            System.out.println("Inside Insert!!");
-            MCQListener mIsner=new MCQListener(sf,user);
-            MCQFrame mf=new MCQFrame(user,mIsner);
-            mIsner.addFrames(mf);
-            sf.setVisible(false);
-            mf.setVisible(true);
+            if(typeQ==1){//MCQ
+                System.out.println("Inside Insert(MCQ)!!");
+                MCQListener mIsner=new MCQListener(sf,user);
+                MCQFrame mf=new MCQFrame(user,mIsner);
+                mIsner.addFrames(mf);
+                sf.setVisible(false);
+                mf.setVisible(true);
+            }
+            else if(typeQ==2){//True/False
+                System.out.println("Inside Insert (True/False)");
+                FillListener fIsner=new FillListener(sf);
+                FillFrame ff=new FillFrame(user,fIsner);
+                fIsner.addFrames(ff);
+                sf.setVisible(false);
+                ff.setVisible(true);
+            }
+            else if(typeQ==3){
+
+            }
         }
         else if(cmd.equals("Modify!!")){
             System.out.println("Inside Modify!!");
@@ -54,12 +68,15 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
             String cbTag=cbSelected.getLabel();
             if(cbTag.equals("MCQ")){
                 System.out.println("MCQ Clicked");
+                typeQ=1;
             }
             else if(cbTag.equals("True/False")){
                 System.out.println("True/False Selected");
+                typeQ=2;
             }
             else if(cbTag.equals("Fill in Blanks")){
                 System.out.println("Fill in the Blanks Selected");
+                typeQ=3;
             }
         }
         catch(Exception e){

@@ -6,6 +6,7 @@ public class MCQFrame extends Frame{
     //Instance Variable
     TextField optAF,optBF,optCF,optDF;
     TextArea questF;
+    Label msgF;
 
     public MCQFrame(String name,MCQListener mIsner){
         setLayout(new BorderLayout());
@@ -156,6 +157,14 @@ public class MCQFrame extends Frame{
         constraint.gridx=4;
         constraint.gridy=4;
         paneC.add(insertB,constraint);
+
+        Label msgL=new Label("");
+        this.msgF=msgL;
+        msgL.setFont(new Font("Plain",Font.BOLD,17));
+        constraint.gridx=2;
+        constraint.gridy=5;
+        constraint.weighty=0;
+        paneC.add(msgL,constraint);
 
 
         add(paneT,BorderLayout.NORTH);

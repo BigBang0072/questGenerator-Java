@@ -24,9 +24,13 @@ public class MCQListener extends WindowAdapter implements ActionListener,ItemLis
             String optD=mf.optDF.getText();
             if(quest.equals("") || optA.equals("") || optB.equals("") || optD.equals("")){
                 System.out.println("Please enter all the fields");
+                mf.msgF.setText("Enter all the fields first!!");
+                mf.setVisible(false);
+                mf.setVisible(true);
             }
             else{
                 System.out.println("Adding the question to Question Bank");
+                //link with the database
                 System.out.println(quest);
                 System.out.println(optA);
                 System.out.println(optB);
@@ -38,6 +42,8 @@ public class MCQListener extends WindowAdapter implements ActionListener,ItemLis
         }
         else if(cmd.equals("Cancel")){
             System.out.println("Cancelled!!");
+            mf.setVisible(false);
+            sf.setVisible(true);
         }
     }
     public void itemStateChanged(ItemEvent selected){

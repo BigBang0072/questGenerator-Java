@@ -3,7 +3,12 @@ import java.lang.*;
 import java.awt.*;
 
 public class FillFrame extends Frame{
-    public FillFrame(String name){
+    //Instance Variable
+    TextArea fHalfF,lHalfF;
+    TextField ansCF;
+    Label msgF;
+
+    public FillFrame(String name,FillListener fIsner){
         setLayout(new BorderLayout());
 
         //Top Panel
@@ -19,6 +24,7 @@ public class FillFrame extends Frame{
         paneT.add(greetL,constraint);
 
         Button goBackB=new Button("Cancel");
+        goBackB.addActionListener(fIsner);
         Font buttonFont=new Font("Plain",Font.BOLD,15);
         constraint.gridx=1;
         constraint.gridy=0;
@@ -44,7 +50,9 @@ public class FillFrame extends Frame{
         paneC.add(secondL,constraint);
 
         TextArea firstTA=new TextArea(3,50);
+        this.fHalfF=firstTA;
         TextArea secondTA=new TextArea(3,50);
+        this.lHalfF=secondTA;
         constraint.gridx=0;
         constraint.gridy=1;
         paneC.add(firstTA,constraint);
@@ -62,6 +70,7 @@ public class FillFrame extends Frame{
         paneC.add(ansL,constraint);
 
         TextField ansF=new TextField(25);
+        this.ansCF=ansF;
         constraint.gridx=2;
         constraint.gridy=3;
         //constraint.anchor=GridBagConstraints.WEST;//default
@@ -69,10 +78,18 @@ public class FillFrame extends Frame{
 
 
         Button insertB=new Button("Add to Question Bank");
+        insertB.addActionListener(fIsner);
         insertB.setFont(new Font("Plain",Font.BOLD,16));
         constraint.gridx=2;
         constraint.gridy=4;
         paneC.add(insertB,constraint);
+
+        Label msgL=new Label("");
+        this.msgF=msgL;
+        msgL.setFont(new Font("Plain",Font.BOLD,17));
+        constraint.gridx=0;
+        constraint.gridy=4;
+        paneC.add(msgL,constraint);
 
 
         add(paneT,BorderLayout.NORTH);
@@ -80,6 +97,7 @@ public class FillFrame extends Frame{
 
         setSize(1000,500);
         setTitle("Insert:Fill In the Blanks-Question");
+        addWindowListener(fIsner);
     }
     public Insets getInsets(){
         return new Insets(100,100,100,100);
