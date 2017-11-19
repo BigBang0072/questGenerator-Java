@@ -19,6 +19,13 @@ public class ModifyFrame extends Frame{
         constraint.gridy=0;
         paneT.add(greetL,constraint);
 
+        Button goBackB=new Button("Cancel");
+        Font buttonFont=new Font("Plain",Font.BOLD,15);
+        constraint.gridx=1;
+        constraint.gridy=0;
+        constraint.weightx=0.5;
+        paneT.add(goBackB,constraint);
+
         Font genFont=new Font("Plain",Font.BOLD,15);
         //Center Panel (main challenge)
         Panel paneC=new Panel(new GridBagLayout());

@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class LoginFrame extends Frame{
     TextField userNameF,passwordF;
+    Label msgF;
 
     public LoginFrame(LoginListener lIsner){
         //Main Layout is the Border Layout and nested inside is other ones.
@@ -51,40 +52,49 @@ public class LoginFrame extends Frame{
         paneC.setBackground(Color.lightGray);
 
         //UserName Entring Area
-        Label userNameL=new Label("UserName : ",Label.CENTER);
+        Label msgL=new Label("For registring Fill the details and then click New Registation",Label.CENTER);
+        this.msgF=msgL;
         Font userFont=new Font("Plain",Font.BOLD,15);
+        msgL.setFont(userFont);
+        constraint.gridx=1;
+        constraint.gridy=0;
+        constraint.weighty=0.5;
+        paneC.add(msgL,constraint);
+
+        Label userNameL=new Label("UserName : ",Label.RIGHT);
         userNameL.setFont(userFont);
         constraint.gridx=0;
-        constraint.gridy=0;
+        constraint.gridy=1;
         constraint.weightx=0.5;
         constraint.weighty=0;
         paneC.add(userNameL,constraint);
         TextField userNameT=new TextField(20);
         userNameF=userNameT;
-        constraint.gridx=2;
-        constraint.gridy=0;
+        constraint.gridx=1;
+        constraint.gridy=1;
         paneC.add(userNameT,constraint);
 
         //Password Staging area.
-        Label passwordL=new Label("Password : ",Label.CENTER);
+        Label passwordL=new Label("Password : ",Label.RIGHT);
         //passwordL.setAlignment(Label.RIGHT);
         passwordL.setFont(userFont);
         constraint.gridx=0;
-        constraint.gridy=1;
+        constraint.gridy=2;
         paneC.add(passwordL,constraint);
         TextField passwordT=new TextField(20);
         passwordF=passwordT;
         passwordT.setEchoChar('*');
-        constraint.gridx=2;
-        constraint.gridy=1;
+        constraint.gridx=1;
+        constraint.gridy=2;
         paneC.add(passwordT,constraint);
+
 
         Button loginB=new Button("Login To Profile");
         loginB.addActionListener(lIsner);
         loginB.setFont(userFont);
         constraint.gridx=1;
-        constraint.gridy=2;
-        //constraint.weighty=0.1;
+        constraint.gridy=3;
+        constraint.weighty=0.5;
         paneC.add(loginB,constraint);
 
         add(paneT,BorderLayout.NORTH);
@@ -100,7 +110,8 @@ public class LoginFrame extends Frame{
     }
     /*
     public static void main(String args[]){
-        LoginFrame lf=new LoginFrame();
+        LoginListener temp=new LoginListener();
+        LoginFrame lf=new LoginFrame(temp);
         lf.setVisible(true);
     }
     */

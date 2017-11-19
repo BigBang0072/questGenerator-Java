@@ -3,7 +3,11 @@ import java.lang.*;
 import java.awt.*;
 
 public class MCQFrame extends Frame{
-    public MCQFrame(String name){
+    //Instance Variable
+    TextField optAF,optBF,optCF,optDF;
+    TextArea questF;
+
+    public MCQFrame(String name,MCQListener mIsner){
         setLayout(new BorderLayout());
 
         //Top Panel
@@ -17,6 +21,14 @@ public class MCQFrame extends Frame{
         constraint.gridx=0;
         constraint.gridy=0;
         paneT.add(greetL,constraint);
+
+        Button goBackB=new Button("Cancel");
+        goBackB.addActionListener(mIsner);
+        Font buttonFont=new Font("Plain",Font.BOLD,15);
+        constraint.gridx=1;
+        constraint.gridy=0;
+        constraint.weightx=0.5;
+        paneT.add(goBackB,constraint);
 
         //Center Panel
         Panel paneC=new Panel(new GridBagLayout());
@@ -33,6 +45,7 @@ public class MCQFrame extends Frame{
         paneC.add(questL,constraint);
 
         TextArea questTA=new TextArea(6,60);
+        this.questF=questTA;
         constraint.anchor=GridBagConstraints.WEST;
         constraint.gridx=2;
         constraint.gridy=0;
@@ -48,6 +61,7 @@ public class MCQFrame extends Frame{
         paneC.add(optL,constraint);
 
         TextField opt1=new TextField(25);
+        this.optAF=opt1;
         Label opt1L=new Label("(a). ");
         opt1L.setFont(questFont);
         constraint.gridx=1;
@@ -64,6 +78,7 @@ public class MCQFrame extends Frame{
         paneC.add(opt1,constraint);
 
         TextField opt2=new TextField(25);
+        this.optBF=opt2;
         Label opt2L=new Label("(b). ");
         opt2L.setFont(questFont);
         constraint.gridx=3;
@@ -80,6 +95,7 @@ public class MCQFrame extends Frame{
         paneC.add(opt2,constraint);
 
         TextField opt3=new TextField(25);
+        optCF=opt3;
         Label opt3L=new Label("(c). ");
         opt3L.setFont(questFont);
         constraint.gridx=1;
@@ -96,6 +112,7 @@ public class MCQFrame extends Frame{
         paneC.add(opt3,constraint);
 
         TextField opt4=new TextField(25);
+        optDF=opt4;
         Label opt4L=new Label("(d). ");
         opt4L.setFont(questFont);
         constraint.gridx=3;
@@ -121,6 +138,7 @@ public class MCQFrame extends Frame{
         paneC.add(ansL,constraint);
 
         List optList=new List(4);
+        optList.addItemListener(mIsner);
         optList.setFont(questFont);
         optList.add("a.");
         optList.add("b.");
@@ -133,6 +151,7 @@ public class MCQFrame extends Frame{
 
 
         Button insertB=new Button("Add to Question Bank");
+        insertB.addActionListener(mIsner);
         insertB.setFont(new Font("Plain",Font.BOLD,16));
         constraint.gridx=4;
         constraint.gridy=4;
@@ -143,6 +162,7 @@ public class MCQFrame extends Frame{
         add(paneC,BorderLayout.CENTER);
         setTitle("Insert:MCQ-Question");
         setSize(1250,800);
+        addWindowListener(mIsner);
     }
     public Insets getInsets(){
         return new Insets(100,100,100,100);

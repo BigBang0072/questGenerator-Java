@@ -26,6 +26,9 @@ public class LoginListener extends WindowAdapter implements ActionListener{
                 //handler of Welcome Frame.
                 wf.setVisible(true);
             }
+            else{
+                lf.msgF.setText("Wrong Password !!. Please try again.");
+            }
         }
         else if(cmd.equals("New Registration")){
             System.out.println("New Registration Clicked");

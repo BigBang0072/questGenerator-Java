@@ -39,6 +39,7 @@ public class WelcomeListener extends WindowAdapter implements ActionListener{
             wf.setVisible(false);
             lf.userNameF.setText("");
             lf.passwordF.setText("");
+            lf.msgF.setText("For registring Fill the details and then click New Registation");
             lf.setVisible(true);
         }
         else if(cmd.equals("Add Subject")){
@@ -53,6 +54,7 @@ public class WelcomeListener extends WindowAdapter implements ActionListener{
         wf.setVisible(false);
         lf.userNameF.setText("");
         lf.passwordF.setText("");
+        lf.msgF.setText("For registring Fill the details and then click New Registation");
         lf.setVisible(true);
     }
 

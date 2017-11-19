@@ -19,6 +19,11 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
         String cmd=buttonPress.getActionCommand();
         if(cmd.equals("Insert!!")){
             System.out.println("Inside Insert!!");
+            MCQListener mIsner=new MCQListener(sf,user);
+            MCQFrame mf=new MCQFrame(user,mIsner);
+            mIsner.addFrames(mf);
+            sf.setVisible(false);
+            mf.setVisible(true);
         }
         else if(cmd.equals("Modify!!")){
             System.out.println("Inside Modify!!");
@@ -39,6 +44,7 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
             sf.setVisible(false);
             lf.userNameF.setText("");
             lf.passwordF.setText("");
+            lf.msgF.setText("For registring Fill the details and then click New Registation");
             lf.setVisible(true);
         }
     }
