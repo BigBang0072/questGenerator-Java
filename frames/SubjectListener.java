@@ -59,6 +59,18 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
         }
         else if(cmd.equals("Generate!!")){
             System.out.println("Inside Generate!!");
+            //We may hae to give the file handle to both Listener and
+            //Frame for initial construction. Also a random number gen is
+            //needed.
+            int quesNoTemp=Integer.parseInt(sf.quesNumF.getText());//Have to take this input from gui.
+            //and hanfle when it exceeds the total max.
+            ExportListener eIsner=new ExportListener(sf);
+            ExportFrame efQues=new ExportFrame(user,quesNoTemp,eIsner);
+            ExportFrame efSoln=new ExportFrame(user,quesNoTemp,eIsner);
+            efSoln.viewF.setLabel("View Question");
+            eIsner.addFrames(efQues,efSoln);
+            sf.setVisible(false);
+            efQues.setVisible(true);
         }
         else if(cmd.equals("Delete!!")){
             System.out.println("Inside Delete");

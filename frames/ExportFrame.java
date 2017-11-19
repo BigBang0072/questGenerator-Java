@@ -3,7 +3,10 @@ import java.lang.*;
 import java.awt.*;
 
 public class ExportFrame extends Frame{
-    public ExportFrame(String name,int totalQuest){
+    //Instance Variable
+    Button viewF;
+
+    public ExportFrame(String name,int totalQuest,ExportListener eIsner){
         setLayout(new BorderLayout());
 
         //Top Panel: coustamary Welcome.
@@ -19,6 +22,7 @@ public class ExportFrame extends Frame{
         paneT.add(greetL,constraint);
 
         Button goBackB=new Button("Cancel");
+        goBackB.addActionListener(eIsner);
         Font buttonFont=new Font("Plain",Font.BOLD,15);
         constraint.gridx=1;
         constraint.gridy=0;
@@ -61,6 +65,7 @@ public class ExportFrame extends Frame{
         paneS.setBackground(Color.gray);
 
         Button reshuffleB=new Button("Reshuffle");
+        reshuffleB.addActionListener(eIsner);
         reshuffleB.setFont(genFont);
         constraint.gridx=1;
         constraint.gridy=0;
@@ -68,19 +73,23 @@ public class ExportFrame extends Frame{
         constraint.weighty=0;
         paneS.add(reshuffleB,constraint);
 
-        Button modifyB=new Button("Export Ques To File");
+        Button modifyB=new Button("Export Ques to File");
+        modifyB.addActionListener(eIsner);
         modifyB.setFont(genFont);
         constraint.gridx=2;
         constraint.gridy=0;
         paneS.add(modifyB,constraint);
 
         Button solnB=new Button("Export Soln to File");
+        solnB.addActionListener(eIsner);
         solnB.setFont(genFont);
         constraint.gridx=3;
         constraint.gridy=0;
         paneS.add(solnB,constraint);
 
         Button seeSolnB=new Button("View Solution");
+        this.viewF=seeSolnB;
+        seeSolnB.addActionListener(eIsner);
         seeSolnB.setFont(genFont);
         constraint.gridx=0;
         constraint.gridy=0;
@@ -92,6 +101,7 @@ public class ExportFrame extends Frame{
         add(scrollP,BorderLayout.CENTER);
         setSize(1000,1000);
         setTitle("Generate Questions-Paper");
+        addWindowListener(eIsner);
     }
     public Insets getInsets(){
         return new Insets(100,100,100,100);

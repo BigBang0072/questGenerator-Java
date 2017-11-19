@@ -3,6 +3,9 @@ import java.lang.*;
 import java.awt.*;
 
 public class SubjectFrame extends Frame{
+    //Instance Variable
+    TextField quesNumF;
+
     public SubjectFrame(String name,String subject,SubjectListener sIsner){
         setLayout(new BorderLayout());
 
@@ -136,11 +139,27 @@ public class SubjectFrame extends Frame{
         constraint.gridy=3;
         paneGenerate.add(fillIn,constraint);
 
+        Label quesNumL=new Label("No. of Ques : ");
+        quesNumL.setFont(optFont);
+        constraint.gridx=0;
+        constraint.gridy=4;
+        constraint.weightx=0;
+        constraint.anchor=GridBagConstraints.EAST;
+        paneGenerate.add(quesNumL,constraint);
+
+        TextField quesNumT=new TextField("0");
+        this.quesNumF=quesNumT;
+        constraint.gridx=1;
+        constraint.gridy=4;
+        constraint.anchor=GridBagConstraints.WEST;
+        paneGenerate.add(quesNumT,constraint);
+
         Button generateB=new Button("Generate!!");
         generateB.addActionListener(sIsner);
         generateB.setFont(optFont);
-        constraint.anchor=GridBagConstraints.EAST;
-        constraint.gridx=0;
+        constraint.anchor=GridBagConstraints.WEST;
+        constraint.gridx=2;
+        constraint.weightx=0.5;
         constraint.gridy=4;
         paneGenerate.add(generateB,constraint);
 
@@ -249,6 +268,7 @@ public class SubjectFrame extends Frame{
         add(paneC,BorderLayout.CENTER);
         setTitle("Welcome To "+subject);
         setSize(1500,800);
+        addWindowListener(sIsner);
 
     }
 
