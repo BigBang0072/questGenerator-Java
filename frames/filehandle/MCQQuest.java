@@ -4,9 +4,9 @@ import java.lang.*;
 import java.io.*;
 
 public class MCQQuest implements Serializable{
-    String quest;
-    String optA,optB,optC,optD;
-    String ans;//
+    public String quest;
+    public String optA,optB,optC,optD;
+    public String ans;//
     public MCQQuest(String quest,String optA,String optB,String optC,String optD,String ans){
         this.quest=quest;
         this.optA=optA;

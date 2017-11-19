@@ -4,8 +4,8 @@ import java.lang.*;
 import java.io.*;
 
 public class TfQuest implements Serializable{
-    String quest;
-    String ans;
+    public String quest;
+    public String ans;
 
     public TfQuest(String quest,String ans){
         this.quest=quest;

@@ -3,11 +3,11 @@ package filehandle;
 import java.lang.*;
 import java.io.*;
 
-public class User{
-    MCQQuest[] mcq;//type=1
-    FillQuest[] fill;//type=2
-    TfQuest[] tf;//type=3
-    int[] size,filled;
+public class User implements Serializable{
+    public MCQQuest[] mcq;//type=1
+    public FillQuest[] fill;//type=2
+    public TfQuest[] tf;//type=3
+    public int[] size,filled;
 
     public User(){
         mcq=new MCQQuest[20];
@@ -43,7 +43,7 @@ public class User{
         }
     }
 
-    public void addTfQust(String quest,String ans){
+    public void addTfQuest(String quest,String ans){
         TfQuest temp=new TfQuest(quest,ans);
         try{
             tf[filled[2]]=temp;
