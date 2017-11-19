@@ -3,7 +3,11 @@ import java.lang.*;
 import java.awt.*;
 
 public class TfFrame extends Frame{
-    public TfFrame(String name){
+    //Instance Variable
+    TextArea questF;
+    Label msgF;
+
+    public TfFrame(String name,TfListener tIsner){
         setLayout(new BorderLayout());
 
         //Top Panel
@@ -19,6 +23,7 @@ public class TfFrame extends Frame{
         paneT.add(greetL,constraint);
 
         Button goBackB=new Button("Cancel");
+        goBackB.addActionListener(tIsner);
         Font buttonFont=new Font("Plain",Font.BOLD,15);
         constraint.gridx=1;
         constraint.gridy=0;
@@ -41,6 +46,7 @@ public class TfFrame extends Frame{
         constraint.anchor=GridBagConstraints.CENTER;
 
         TextArea questTA=new TextArea(4,70);
+        this.questF=questTA;
         constraint.gridx=1;
         constraint.gridy=0;
         constraint.weightx=0.5;
@@ -58,6 +64,7 @@ public class TfFrame extends Frame{
         constraint.anchor=GridBagConstraints.CENTER;
 
         List tF=new List(2);
+        tF.addItemListener(tIsner);
         tF.setFont(questFont);
         tF.add("True");
         tF.add("False");
@@ -66,6 +73,8 @@ public class TfFrame extends Frame{
         paneC.add(tF,constraint);
 
         Button insertB=new Button("Add to Question-Bank");
+        insertB.addActionListener(tIsner);
+        insertB.addActionListener(tIsner);
         insertB.setFont(questFont);
         constraint.gridx=1;
         constraint.gridy=2;
@@ -73,11 +82,19 @@ public class TfFrame extends Frame{
         constraint.weighty=0.5;
         paneC.add(insertB,constraint);
 
+        Label msgL=new Label("");
+        this.msgF=msgL;
+        msgL.setFont(new Font("Plain",Font.BOLD,17));
+        constraint.gridx=0;
+        constraint.gridy=2;
+        paneC.add(msgL,constraint);
+
 
         add(paneC,BorderLayout.CENTER);
         add(paneT,BorderLayout.NORTH);
         setSize(1000,500);
         setTitle("Insert:True/False-Question");
+        addWindowListener(tIsner);
 
     }
     public Insets getInsets(){

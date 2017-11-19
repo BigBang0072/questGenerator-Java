@@ -36,7 +36,12 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
                 ff.setVisible(true);
             }
             else if(typeQ==3){
-
+                System.out.println("Inside Fill in the Blanks!!");
+                TfListener tIsner=new TfListener(sf);
+                TfFrame tf=new TfFrame(user,tIsner);
+                tIsner.addFrames(tf);
+                sf.setVisible(false);
+                tf.setVisible(true);
             }
         }
         else if(cmd.equals("Modify!!")){
