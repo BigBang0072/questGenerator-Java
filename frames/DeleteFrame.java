@@ -3,7 +3,10 @@ import java.lang.*;
 import java.awt.*;
 
 public class DeleteFrame extends Frame{
-    public DeleteFrame(String name,int totalQuest){
+    //Instance Variable
+    Label msgF;
+
+    public DeleteFrame(String name,int totalQuest,DeleteListener dIsner){
         //Top Panel: coustamary Welcome.
         Panel paneT=new Panel(new GridBagLayout());
         paneT.setBackground(Color.gray);
@@ -17,6 +20,7 @@ public class DeleteFrame extends Frame{
         paneT.add(greetL,constraint);
 
         Button goBackB=new Button("Cancel");
+        goBackB.addActionListener(dIsner);
         Font buttonFont=new Font("Plain",Font.BOLD,15);
         constraint.gridx=1;
         constraint.gridy=0;
@@ -29,6 +33,7 @@ public class DeleteFrame extends Frame{
         paneC.setBackground(Color.lightGray);
 
         List questList=new List(totalQuest);
+        questList.addItemListener(dIsner);
         questList.setFont(genFont);
         for(int i=0;i<totalQuest;i++){
             if(i<9){
@@ -51,14 +56,22 @@ public class DeleteFrame extends Frame{
         paneS.setBackground(Color.gray);
 
         Button modifyB=new Button("Delete");
+        modifyB.addActionListener(dIsner);
         modifyB.setFont(genFont);
         modifyB.setBackground(Color.red);
-        constraint.gridx=0;
+        constraint.gridx=1;
         constraint.gridy=0;
+        constraint.weightx=0.2;
         constraint.anchor=GridBagConstraints.EAST;
         paneS.add(modifyB,constraint);
         constraint.anchor=GridBagConstraints.CENTER;
 
+        Label msgL=new Label("");
+        this.msgF=msgL;
+        msgL.setFont(new Font("Plain",Font.BOLD,17));
+        constraint.gridx=0;
+        constraint.gridy=0;
+        paneS.add(msgL,constraint);
 
 
         add(paneT,BorderLayout.NORTH);
@@ -67,6 +80,7 @@ public class DeleteFrame extends Frame{
         //add(paneE,BorderLayout.EAST);
         setSize(1000,500);
         setTitle("Delete Existing Questions");
+        addWindowListener(dIsner);
     }
     public Insets getInsets(){
         return new Insets(100,100,100,100);

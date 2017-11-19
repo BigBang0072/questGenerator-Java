@@ -62,6 +62,13 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
         }
         else if(cmd.equals("Delete!!")){
             System.out.println("Inside Delete");
+            //Same task as Modify
+            int quesNoTemp=20;
+            DeleteListener dIsner=new DeleteListener(sf);
+            DeleteFrame df=new DeleteFrame(user,quesNoTemp,dIsner);
+            dIsner.addFrames(df);
+            sf.setVisible(false);
+            df.setVisible(true);
         }
         else if(cmd.equals("Go Back")){
             System.out.println("Inside Go Back!!");
