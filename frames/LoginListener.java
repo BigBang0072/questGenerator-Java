@@ -3,13 +3,16 @@ package frames;
 import java.lang.*;
 import java.awt.*;
 import java.awt.event.*;
+import frames.filehandle.*;
 
 public class LoginListener extends WindowAdapter implements ActionListener{
     LoginFrame lf;
     WelcomeFrame wf;
-    //Later read from the database.
-    String user="Kalpana";
-    String password="deyKay";//Currently just hardcoding
+    LoginManager logManager;
+
+    public LoginListener(){
+        logManager=new LoginManager();
+    }
 
     public void actionPerformed(ActionEvent buttonPress){
         String cmd=buttonPress.getActionCommand();
@@ -18,7 +21,8 @@ public class LoginListener extends WindowAdapter implements ActionListener{
             String reqUserName=lf.userNameF.getText();
             String reqPassword=lf.passwordF.getText();
             //This conditional chek will be done from database of user.
-            if(reqUserName.equals(user) && reqPassword.equals(password)){
+            boolean token=logManager.authenticateLogin(reqUserName,reqPassword);
+            if(token){
                 lf.setVisible(false);
                 WelcomeListener wIsner=new WelcomeListener(lf,reqUserName);
                 wf=new WelcomeFrame(reqUserName,wIsner);
@@ -28,19 +32,32 @@ public class LoginListener extends WindowAdapter implements ActionListener{
             }
             else{
                 lf.msgF.setText("Wrong Password !!. Please try again.");
+                lf.setVisible(false);
+                lf.setVisible(true);//refresh
             }
         }
         else if(cmd.equals("New Registration")){
             System.out.println("New Registration Clicked");
-            lf.setVisible(false);
+            //lf.setVisible(false);
             String reqUserName=lf.userNameF.getText();
             String reqPassword=lf.passwordF.getText();
             //Have to add the the new User to database and initialize its directory.
-            WelcomeListener wIsner=new WelcomeListener(lf,reqUserName);
-            wf=new WelcomeFrame(reqUserName,wIsner);
-            wIsner.addFrames(wf);
-            //wf's handler will be defined here
-            wf.setVisible(true);
+            boolean token=logManager.checkNameAvailable(reqUserName);
+            if(token){
+                logManager.addUser(reqUserName,reqPassword);
+                logManager.saveCredentails();
+                WelcomeListener wIsner=new WelcomeListener(lf,reqUserName);
+                wf=new WelcomeFrame(reqUserName,wIsner);
+                wIsner.addFrames(wf);
+                //wf's handler will be defined here
+                lf.setVisible(false);
+                wf.setVisible(true);
+            }
+            else{
+                lf.msgF.setText("UserName not Available.Try other");
+                lf.setVisible(false);
+                lf.setVisible(true);//refresh
+            }
         }
     }
     public void windowClosing(WindowEvent we){
