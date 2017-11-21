@@ -30,6 +30,7 @@ public class FillListener extends WindowAdapter implements ActionListener{
                 System.out.println("Adding to Question Bank");
                 //Have to link with dataBase.
                 dbms.database.addFillQuest(fHalf,lHalf,ansC);
+                dbms.writeUserDatabase();//hatho hat likh bhi do yar
                 ff.setVisible(false);
                 sf.setVisible(true);
             }

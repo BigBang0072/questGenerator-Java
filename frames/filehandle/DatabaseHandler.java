@@ -4,14 +4,14 @@ import java.lang.*;
 import java.io.*;
 
 public class DatabaseHandler{
-    public String username;
+    public String subject;
     public File dir;
     public File file;
     public User database;
 
-    public DatabaseHandler(String username,File dir){
-        this.username=username;
-        this.dir=dir;
+    public DatabaseHandler(String subject,File dir){
+        this.subject=subject;
+        this.dir=dir;//Dir should be given with added username.
         database=new User();//Initializing data base.
         file=takeOrCreateFile();//Reading the previous state
         //saved if present and getting file adress for saving
@@ -32,12 +32,13 @@ public class DatabaseHandler{
     }
 
     public File takeOrCreateFile(){
-        String pathName=dir.getName();
+        String pathName=dir.getPath();
+        System.out.println(pathName);
         String[] files=dir.list();
         int len=files.length;
         int flag=0;
         for(int i=0;i<len;i++){
-            if(username.equals(files[i])){
+            if(subject.equals(files[i])){
                 flag=1;
                 File oldFile=new File(pathName+"/"+files[i]);
                 System.out.println(pathName+"/"+files[i]);
@@ -46,8 +47,9 @@ public class DatabaseHandler{
             }
         }
         String path=dir.getPath();
-        System.out.println(pathName+"/"+username);
-        File newFile=new File(pathName+"/"+username);
+        System.out.println(pathName+"/"+subject);
+        File newFile=new File(pathName+"/"+subject);
+        //newFile.mkdirs();//if file is not there initially.Silly me
         return newFile;
     }
     //Called internally

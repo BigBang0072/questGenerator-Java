@@ -21,20 +21,25 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
         this.wf=wf;
         this.user=user;
         String restPath=wf.restPathF.getText();
+        //User added to the path
         String fullPath="/home/abhinav/Desktop/OOPMiniProject/questGenerator-Java/"+restPath;
-        path=new File(fullPath);
-        if(path.exists()){
+        File tempDir=new File(fullPath);
+        if(tempDir.exists()){
             //else the user defined path will be used to read and write the Question Bank
             System.out.println("User-given Path taken");
-            path=path;
+            path=new File(fullPath+"/"+user);
+            path.mkdirs();
         }
         else{
             //our default path.
+
             System.out.println("Default Taken");
-            path=new File("/home/abhinav/Desktop/OOPMiniProject/questGenerator-Java/Database");
+            //user-name added to the path(now we have directory of user)
+            path=new File("/home/abhinav/Desktop/OOPMiniProject/questGenerator-Java/Database"+"/"+user);
+            path.mkdirs();
         }
         //database Linked
-        dbms=new DatabaseHandler(user,path);
+        dbms=new DatabaseHandler(subject,path);//database read the subject obj from the "user" directory
     }
     public void actionPerformed(ActionEvent buttonPress){
         String cmd=buttonPress.getActionCommand();
@@ -47,16 +52,16 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
                 sf.setVisible(false);
                 mf.setVisible(true);
             }
-            else if(typeQ==2){//True/False
-                System.out.println("Inside Insert (True/False)");
+            else if(typeQ==3){//True/False
+                System.out.println("Inside Fill in the Blanks!!");
                 FillListener fIsner=new FillListener(sf,dbms);
                 FillFrame ff=new FillFrame(user,fIsner);
                 fIsner.addFrames(ff);
                 sf.setVisible(false);
                 ff.setVisible(true);
             }
-            else if(typeQ==3){
-                System.out.println("Inside Fill in the Blanks!!");
+            else if(typeQ==2){
+                System.out.println("Inside Insert (True/False)");
                 TfListener tIsner=new TfListener(sf,dbms);
                 TfFrame tf=new TfFrame(user,tIsner);
                 tIsner.addFrames(tf);

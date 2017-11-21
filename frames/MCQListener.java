@@ -36,6 +36,7 @@ public class MCQListener extends WindowAdapter implements ActionListener,ItemLis
                 System.out.println("Adding the question to Question Bank");
                 //link with the database
                 dbms.database.addMCQQuest(quest,optA,optB,optC,optD,ans);//Aha just in one sweep
+                dbms.writeUserDatabase();
                 System.out.println(quest);
                 System.out.println(optA);
                 System.out.println(optB);

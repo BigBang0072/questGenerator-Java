@@ -28,8 +28,9 @@ public class TfListener extends WindowAdapter implements ActionListener,ItemList
             }
             else{
                 //Linking to the database
+                //System.out.println("Adding to Question Bank");
                 dbms.database.addTfQuest(quest,correct);//Just in one line
-                System.out.println("Adding to Question Bank");
+                dbms.writeUserDatabase();
                 tf.setVisible(false);
                 sf.setVisible(true);
             }
