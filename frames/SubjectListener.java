@@ -10,13 +10,13 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
     LoginFrame lf;
     WelcomeFrame wf;
     SubjectFrame sf;
-    String user;
+    String user,subject;
     int typeQ=1;//1:MCQ, 2:True/Flase, 3:Fill in the Blanks
     File path;
     //This is the final resting place of the data base.(origin)
     DatabaseHandler dbms;
 
-    public SubjectListener(LoginFrame lf,WelcomeFrame wf,String user){
+    public SubjectListener(LoginFrame lf,WelcomeFrame wf,String user,String subject){
         this.lf=lf;
         this.wf=wf;
         this.user=user;
@@ -25,7 +25,7 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
         path=new File(fullPath);
         if(path.exists()){
             //else the user defined path will be used to read and write the Question Bank
-            System.out.println("User Path taken");
+            System.out.println("User-given Path taken");
             path=path;
         }
         else{

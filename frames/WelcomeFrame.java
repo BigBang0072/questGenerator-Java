@@ -4,7 +4,8 @@ import java.awt.*;
 
 public class WelcomeFrame extends Frame{
     //Instance Variable
-    TextField restPathF;
+    TextField restPathF,otherF;
+
 
     public WelcomeFrame(String name,WelcomeListener wIsner){
         setLayout(new BorderLayout());
@@ -62,6 +63,19 @@ public class WelcomeFrame extends Frame{
         constraint.gridy=2;
         paneC.add(phyB,constraint);
 
+        TextField otherTF=new TextField(15);
+        this.otherF=otherTF;
+        constraint.gridx=0;
+        constraint.gridy=3;
+        paneC.add(otherTF,constraint);
+
+        Button otherB=new Button("Other Subject?(Type and click Go)");
+        otherB.addActionListener(wIsner);
+        otherB.setFont(subFont);
+        constraint.gridx=1;
+        constraint.gridy=3;
+        paneC.add(otherB,constraint);
+
         Label infoBlank=new Label("Directory to save QB(Default set):");
         infoBlank.setFont(new Font("Serif",Font.BOLD,17));
         constraint.weightx=0;
@@ -94,6 +108,7 @@ public class WelcomeFrame extends Frame{
 
 
         //SOUTH PANEL
+        /*
         Panel paneS=new Panel(new GridBagLayout());
         paneS.setBackground(Color.white);
 
@@ -114,13 +129,13 @@ public class WelcomeFrame extends Frame{
         constraint.gridx=1;
         constraint.gridy=0;
         paneS.add(deleteSub,constraint);
-
+        */
 
 
 
         add(paneT,BorderLayout.NORTH);
         add(paneC,BorderLayout.CENTER);
-        add(paneS,BorderLayout.SOUTH);
+        //add(paneS,BorderLayout.SOUTH);
         setTitle("WelcomePage");
         setSize(1600,700);
         addWindowListener(wIsner);
