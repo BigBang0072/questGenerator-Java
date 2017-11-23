@@ -102,6 +102,25 @@ public class ModifyListener extends WindowAdapter implements ActionListener,Item
                     mf.setVisible(false);
                     mCf.setVisible(true);
                 }
+                else if(typeQ==2){//Tf Ques
+                    String quest=dbms.database.tf[quesNo].quest;
+                    String ans=dbms.database.tf[quesNo].ans;
+                    int opt=-1;
+                    if(ans.equals("True")){
+                        opt=0;
+                    }
+                    else if(ans.equals("False")){
+                        opt=1;
+                    }
+                    TfListener tIsner=new TfListener(sf,user,dbms,3,quesNo);
+                    TfFrame tf=new TfFrame(user,tIsner);
+                    tf.questF.setText(quest);
+                    tf.optListF.select(opt);
+
+                    tIsner.addFrames(tf);
+                    mf.setVisible(false);
+                    tf.setVisible(true);
+                }
 
             }
         }

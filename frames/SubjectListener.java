@@ -64,7 +64,7 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
             }
             else if(typeQ==2){
                 System.out.println("Inside Insert (True/False)");
-                TfListener tIsner=new TfListener(sf,dbms);
+                TfListener tIsner=new TfListener(sf,user,dbms,actionFlag,-1);//default ques num invalid
                 TfFrame tf=new TfFrame(user,tIsner);
                 tIsner.addFrames(tf);
                 sf.setVisible(false);

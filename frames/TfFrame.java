@@ -6,6 +6,7 @@ public class TfFrame extends Frame{
     //Instance Variable
     TextArea questF;
     Label msgF;
+    List optListF;
 
     public TfFrame(String name,TfListener tIsner){
         setLayout(new BorderLayout());
@@ -64,6 +65,7 @@ public class TfFrame extends Frame{
         constraint.anchor=GridBagConstraints.CENTER;
 
         List tF=new List(2);
+        this.optListF=tF;
         tF.addItemListener(tIsner);
         tF.setFont(questFont);
         tF.add("True");

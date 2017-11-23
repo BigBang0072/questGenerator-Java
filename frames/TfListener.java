@@ -10,10 +10,16 @@ public class TfListener extends WindowAdapter implements ActionListener,ItemList
     TfFrame tf;
     String correct="";
     DatabaseHandler dbms;
+    int actionFlag;
+    int quesNum;
+    String user;
 
-    public TfListener(SubjectFrame sf,DatabaseHandler dbms){
+    public TfListener(SubjectFrame sf,String user,DatabaseHandler dbms,int actionFlag,int quesNum){
         this.sf=sf;
         this.dbms=dbms;
+        this.actionFlag=actionFlag;
+        this.quesNum=quesNum;
+        this.user=user;
     }
 
     public void actionPerformed(ActionEvent buttonPress){
@@ -28,11 +34,19 @@ public class TfListener extends WindowAdapter implements ActionListener,ItemList
             }
             else{
                 //Linking to the database
-                System.out.println("Adding to Question Bank"+" "+quest);
-                dbms.database.addTfQuest(quest,correct);//Just in one line
-                dbms.writeUserDatabase();
-                tf.setVisible(false);
-                sf.setVisible(true);
+                if(actionFlag==1){
+                    System.out.println("Adding to Question Bank"+" "+quest);
+                    dbms.database.addTfQuest(quest,correct);//Just in one line
+                    dbms.writeUserDatabase();
+                    tf.setVisible(false);
+                    sf.setVisible(true);
+                }
+                else if(actionFlag==3){
+                    dbms.database.modifyTfQuest(quesNum,quest,correct);
+                    dbms.writeUserDatabase();
+                    tf.setVisible(false);
+                    sf.setVisible(true);
+                }
             }
         }
         else if(cmd.equals("Cancel")){
