@@ -74,7 +74,7 @@ public class TfFrame extends Frame{
 
         Button insertB=new Button("Add to Question-Bank");
         insertB.addActionListener(tIsner);
-        insertB.addActionListener(tIsner);
+        //insertB.addActionListener(tIsner);
         insertB.setFont(questFont);
         constraint.gridx=1;
         constraint.gridy=2;
