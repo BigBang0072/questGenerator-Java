@@ -11,6 +11,7 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
     WelcomeFrame wf;
     SubjectFrame sf;
     String user,subject;
+    Checkbox cbSelected;
     int typeQ=1;//1:MCQ, 2:True/Flase, 3:Fill in the Blanks
     File path;
     //This is the final resting place of the data base.(origin)
@@ -74,11 +75,13 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
             //Have to establsh database connection in the constructor itself
             //according to user name.
             //also accroding to type of question load the appropraite database.
-            int quesNoTemp=20;
+
             //We may have to give teh data base handle for it iterate
-            ModifyListener moIsner=new ModifyListener(sf);
-            ModifyFrame mof=new ModifyFrame(user,quesNoTemp,moIsner);
+            int totalQNow=dbms.database.filled[typeQ-1];
+            ModifyListener moIsner=new ModifyListener(sf,typeQ,dbms);
+            ModifyFrame mof=new ModifyFrame(user,totalQNow,moIsner);
             moIsner.addFrames(mof);
+            moIsner.fillTheQuestionList();
             sf.setVisible(false);
             mof.setVisible(true);
         }
@@ -123,7 +126,7 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
     }
     public void itemStateChanged(ItemEvent selected){
         try{
-            Checkbox cbSelected=(Checkbox)selected.getItemSelectable();
+            cbSelected=(Checkbox)selected.getItemSelectable();
             String cbTag=cbSelected.getLabel();
             if(cbTag.equals("MCQ")){
                 System.out.println("MCQ Clicked");

@@ -42,12 +42,18 @@ public class LoginManager implements Serializable{
     }
 
     public boolean authenticateLogin(String userName,String password){
-        String saved=credentials.get(userName);
-        //System.out.println("pass: "+saved);
-        if(saved.equals(password)){
-            return true;
+        try{
+            String saved=credentials.get(userName);
+            //System.out.println("pass: "+saved);
+            if(saved.equals(password)){
+                return true;
+            }
+            return false;
         }
-        return false;
+        catch(NullPointerException npe){
+            System.out.println("Null pointer Exception Checked!");
+            return false;
+        }
     }
 
     //Called at the end of the Program

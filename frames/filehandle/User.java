@@ -5,8 +5,8 @@ import java.io.*;
 
 public class User implements Serializable{
     public MCQQuest[] mcq;//type=1
-    public FillQuest[] fill;//type=2
-    public TfQuest[] tf;//type=3
+    public FillQuest[] fill;//type=3
+    public TfQuest[] tf;//type=2
     public int[] size,filled;//Directly contain the place to fill
 
     public User(){
@@ -33,26 +33,26 @@ public class User implements Serializable{
     public void addFillQuest(String beforeQuest,String afterQuest,String ans){
         FillQuest temp=new FillQuest(beforeQuest,afterQuest,ans);
         try{
-            fill[filled[1]]=temp;
-            filled[1]+=1;
+            fill[filled[2]]=temp;
+            filled[2]+=1;
         }
         catch(ArrayIndexOutOfBoundsException oob){
-            extendDataBase(2);
-            fill[filled[1]]=temp;
-            filled[1]+=1;
+            extendDataBase(3);
+            fill[filled[2]]=temp;
+            filled[2]+=1;
         }
     }
 
     public void addTfQuest(String quest,String ans){
         TfQuest temp=new TfQuest(quest,ans);
         try{
-            tf[filled[2]]=temp;
-            filled[2]+=1;
+            tf[filled[1]]=temp;
+            filled[1]+=1;
         }
         catch(ArrayIndexOutOfBoundsException oob){
-            extendDataBase(3);
-            tf[filled[2]]=temp;
-            filled[2]+=1;
+            extendDataBase(2);
+            tf[filled[1]]=temp;
+            filled[1]+=1;
         }
     }
 
@@ -65,21 +65,21 @@ public class User implements Serializable{
             mcq=mcqTemp;
             size[0]=size[0]+10;
         }
-        else if(typeFlag==2){
-            FillQuest fillTemp[]=new FillQuest[size[1]+10];//increasing the buffer by 10 each time
-            for(int i=0;i<size[1];i++){
+        else if(typeFlag==3){
+            FillQuest fillTemp[]=new FillQuest[size[2]+10];//increasing the buffer by 10 each time
+            for(int i=0;i<size[2];i++){
                 fillTemp[i]=fill[i];
             }
             fill=fillTemp;
-            size[1]=size[1]+10;
+            size[2]=size[2]+10;
         }
-        else if(typeFlag==3){
-            TfQuest tfTemp[]=new TfQuest[size[2]+10];
-            for(int i=0;i<size[2];i++){
+        else if(typeFlag==2){
+            TfQuest tfTemp[]=new TfQuest[size[1]+10];
+            for(int i=0;i<size[1];i++){
                 tfTemp[i]=tf[i];
             }
             tf=tfTemp;
-            size[2]=size[2]+10;
+            size[1]=size[1]+10;
         }
     }
 }

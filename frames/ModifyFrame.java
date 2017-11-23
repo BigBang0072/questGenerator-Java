@@ -6,6 +6,7 @@ import java.awt.*;
 public class ModifyFrame extends Frame{
     //Instance Variable
     Label msgF;
+    List questListF;
 
     public ModifyFrame(String name,int totalQuest,ModifyListener moIsner){
         setLayout(new BorderLayout());
@@ -36,8 +37,12 @@ public class ModifyFrame extends Frame{
         paneC.setBackground(Color.lightGray);
 
         List questList=new List(totalQuest);
+        this.questListF=questList;
         questList.addItemListener(moIsner);
         questList.setFont(genFont);
+        //Now this monkey buisness of displaying all the question will be taken care by
+        //Modify Listener constructor.
+        /*
         for(int i=0;i<totalQuest;i++){
             if(i<9){
                 questList.add("0"+(i+1)+"        First line");
@@ -45,7 +50,7 @@ public class ModifyFrame extends Frame{
             else{
                 questList.add((i+1)+"        First line");
             }
-        }
+        }*/
         constraint.gridx=0;
         constraint.gridy=0;
         constraint.weightx=0.5;

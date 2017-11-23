@@ -21,6 +21,7 @@ public class FillListener extends WindowAdapter implements ActionListener{
             String fHalf=ff.fHalfF.getText();
             String lHalf=ff.lHalfF.getText();
             String ansC=ff.ansCF.getText();
+            //System.out.println("Adding Fill "+fHalf+"  "+lHalf);
             if(fHalf.equals("") || lHalf.equals("") || ansC.equals("")){
                 ff.msgF.setText("Please fill all the fields!!");
                 ff.setVisible(false);
@@ -30,7 +31,7 @@ public class FillListener extends WindowAdapter implements ActionListener{
                 System.out.println("Adding to Question Bank");
                 //Have to link with dataBase.
                 dbms.database.addFillQuest(fHalf,lHalf,ansC);
-                dbms.writeUserDatabase();//hatho hat likh bhi do yar
+                dbms.writeUserDatabase();//hatho-hath likh bhi do yar
                 ff.setVisible(false);
                 sf.setVisible(true);
             }
