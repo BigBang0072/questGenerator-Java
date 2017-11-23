@@ -116,14 +116,14 @@ public class SubjectFrame extends Frame{
         constraint.gridy=0;
         paneGenerate.add(generateL,constraint);
 
-        CheckboxGroup cbgGenerate=new CheckboxGroup();
+        //CheckboxGroup cbgGenerate=new CheckboxGroup();
         Checkbox mcq,fillIn,tF;
         Font optFont=new Font("Plain",Font.BOLD,15);
-        mcq=new Checkbox("MCQ",cbgGenerate,true);
+        mcq=new Checkbox("MCQ",cbgInsert,true);
         mcq.addItemListener(sIsner);
-        tF=new Checkbox("True/False",cbgGenerate,false);
+        tF=new Checkbox("True/False",cbgInsert,false);
         tF.addItemListener(sIsner);
-        fillIn=new Checkbox("Fill in Blanks",cbgGenerate,false);
+        fillIn=new Checkbox("Fill in Blanks",cbgInsert,false);
         fillIn.addItemListener(sIsner);
         mcq.setFont(optFont);
         tF.setFont(optFont);
@@ -179,14 +179,14 @@ public class SubjectFrame extends Frame{
         constraint.gridy=0;
         paneModify.add(modifyL,constraint);
 
-        CheckboxGroup cbgModify=new CheckboxGroup();
+        //CheckboxGroup cbgModify=new CheckboxGroup();
         Checkbox mcqM,fillInM,tFM;
         Font optFontM=new Font("Plain",Font.BOLD,15);
-        mcqM=new Checkbox("MCQ",cbgModify,true);
+        mcqM=new Checkbox("MCQ",cbgInsert,true);
         mcqM.addItemListener(sIsner);
-        tFM=new Checkbox("True/False",cbgModify,false);
+        tFM=new Checkbox("True/False",cbgInsert,false);
         tFM.addItemListener(sIsner);
-        fillInM=new Checkbox("Fill in Blanks",cbgModify,false);
+        fillInM=new Checkbox("Fill in Blanks",cbgInsert,false);
         fillInM.addItemListener(sIsner);
         mcqM.setFont(optFontM);
         tFM.setFont(optFontM);
@@ -226,14 +226,14 @@ public class SubjectFrame extends Frame{
         constraint.gridy=0;
         paneDelete.add(deleteL,constraint);
 
-        CheckboxGroup cbgDelete=new CheckboxGroup();
+        //CheckboxGroup cbgDelete=new CheckboxGroup();
         Checkbox mcqD,fillInD,tFD;
         Font optFontD=new Font("Plain",Font.BOLD,15);
-        mcqD=new Checkbox("MCQ",cbgDelete,true);
+        mcqD=new Checkbox("MCQ",cbgInsert,true);
         mcqD.addItemListener(sIsner);
-        tFD=new Checkbox("True/False",cbgDelete,false);
+        tFD=new Checkbox("True/False",cbgInsert,false);
         tFD.addItemListener(sIsner);
-        fillInD=new Checkbox("Fill in Blanks",cbgDelete,false);
+        fillInD=new Checkbox("Fill in Blanks",cbgInsert,false);
         fillInD.addItemListener(sIsner);
         mcqD.setFont(optFontD);
         tFD.setFont(optFontD);

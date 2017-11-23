@@ -11,7 +11,7 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
     WelcomeFrame wf;
     SubjectFrame sf;
     String user,subject;
-    Checkbox cbSelected;
+    //Checkbox cbSelected;
     int typeQ=1;//1:MCQ, 2:True/Flase, 3:Fill in the Blanks
     File path;
     //This is the final resting place of the data base.(origin)
@@ -126,7 +126,7 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
     }
     public void itemStateChanged(ItemEvent selected){
         try{
-            cbSelected=(Checkbox)selected.getItemSelectable();
+            Checkbox cbSelected=(Checkbox)selected.getItemSelectable();
             String cbTag=cbSelected.getLabel();
             if(cbTag.equals("MCQ")){
                 System.out.println("MCQ Clicked");
