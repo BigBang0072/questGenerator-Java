@@ -45,9 +45,10 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
     public void actionPerformed(ActionEvent buttonPress){
         String cmd=buttonPress.getActionCommand();
         if(cmd.equals("Insert!!")){
+            int actionFlag=1;
             if(typeQ==1){//MCQ
                 System.out.println("Inside Insert(MCQ)!!");
-                MCQListener mIsner=new MCQListener(sf,user,dbms);
+                MCQListener mIsner=new MCQListener(sf,user,dbms,actionFlag,-1);
                 MCQFrame mf=new MCQFrame(user,mIsner);
                 mIsner.addFrames(mf);
                 sf.setVisible(false);
@@ -78,7 +79,7 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
 
             //We may have to give teh data base handle for it iterate
             int totalQNow=dbms.database.filled[typeQ-1];
-            ModifyListener moIsner=new ModifyListener(sf,typeQ,dbms);
+            ModifyListener moIsner=new ModifyListener(sf,user,typeQ,dbms);
             ModifyFrame mof=new ModifyFrame(user,totalQNow,moIsner);
             moIsner.addFrames(mof);
             moIsner.fillTheQuestionList();

@@ -56,6 +56,42 @@ public class User implements Serializable{
         }
     }
 
+    public void modifyMCQQuest(int quesNum,String quest,String optA,String optB,String optC,String optD,String ans){
+        MCQQuest temp=new MCQQuest(quest,optA,optB,optC,optD,ans);
+        System.out.println("Ques No to modify at: "+quesNum);
+        mcq[quesNum]=temp;
+    }
+    public void modifyFillQuest(int quesNum,String beforeQuest,String afterQuest,String ans){
+        FillQuest temp=new FillQuest(beforeQuest,afterQuest,ans);
+        fill[quesNum]=temp;
+    }
+    public void modifyTfQuest(int quesNum,String quest,String ans){
+        TfQuest temp=new TfQuest(quest,ans);
+        tf[quesNum]=temp;
+    }
+
+    public void removeMCQQuest(int quesNum){
+        int last=filled[0]-1;//current last
+        for(int i=quesNum;i<last;i++){
+            mcq[i]=mcq[i+1];
+        }
+        filled[0]=last;//now fill next time here
+    }
+    public void removeFillQuest(int quesNum){
+        int last=filled[2]-1;
+        for(int i=quesNum;i<last;i++){
+            fill[i]=fill[i+1];
+        }
+        filled[2]=last;
+    }
+    public void removeTfQuest(int quesNum){
+        int last=filled[1]-1;
+        for(int i=quesNum;i<last;i++){
+            tf[i]=tf[i+1];
+        }
+        filled[1]=last;
+    }
+
     public void extendDataBase(int typeFlag){
         if(typeFlag==1){
             MCQQuest mcqTemp[]=new MCQQuest[size[0]+10];//increasing the buffer by 10 each time

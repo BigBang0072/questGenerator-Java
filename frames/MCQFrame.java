@@ -6,6 +6,7 @@ public class MCQFrame extends Frame{
     //Instance Variable
     TextField optAF,optBF,optCF,optDF;
     TextArea questF;
+    List optListF;
     Label msgF;
 
     public MCQFrame(String name,MCQListener mIsner){
@@ -139,6 +140,7 @@ public class MCQFrame extends Frame{
         paneC.add(ansL,constraint);
 
         List optList=new List(4);
+        this.optListF=optList;
         optList.addItemListener(mIsner);
         optList.setFont(questFont);
         optList.add("a.");

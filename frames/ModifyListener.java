@@ -11,12 +11,14 @@ public class ModifyListener extends WindowAdapter implements ActionListener,Item
     ModifyFrame mf;
     int quesNo=-1;
     int typeQ;
+    String user;
     DatabaseHandler dbms;
 
-    public ModifyListener(SubjectFrame sf,int typeQ,DatabaseHandler dbms){
+    public ModifyListener(SubjectFrame sf,String user,int typeQ,DatabaseHandler dbms){
         this.sf=sf;
         this.typeQ=typeQ;
         this.dbms=dbms;
+        this.user=user;
         //Generating the display of all the question string
         //cant do in constructor. mf is not added.
     }
@@ -66,6 +68,41 @@ public class ModifyListener extends WindowAdapter implements ActionListener,Item
                 //here we have to instatate the approprate frame
                 //initialized with the previous texts and then update.
                 //save to database
+                if(typeQ==1){//MCQ
+                    String quest=dbms.database.mcq[quesNo].quest;
+                    String optA=dbms.database.mcq[quesNo].optA;
+                    String optB=dbms.database.mcq[quesNo].optB;
+                    String optC=dbms.database.mcq[quesNo].optC;
+                    String optD=dbms.database.mcq[quesNo].optD;
+                    String ans=dbms.database.mcq[quesNo].ans;
+                    int opt=-1;
+                    if(ans.equals("a.")){
+                        opt=0;
+                    }
+                    else if(ans.equals("b.")){
+                        opt=1;
+                    }
+                    else if(ans.equals("c.")){
+                        opt=2;
+                    }
+                    else if(ans.equals("d.")){
+                        opt=3;
+                    }
+                    System.out.println("Gifing qNum to MCisner"+" "+quesNo);
+                    MCQListener mCIsner=new MCQListener(sf,user,dbms,3,quesNo);
+                    MCQFrame mCf=new MCQFrame(user,mCIsner);
+                    mCf.questF.setText(quest);
+                    mCf.optAF.setText(optA);
+                    mCf.optBF.setText(optB);
+                    mCf.optCF.setText(optC);
+                    mCf.optDF.setText(optD);
+                    mCf.optListF.select(opt);
+                    mCIsner.addFrames(mCf);
+
+                    mf.setVisible(false);
+                    mCf.setVisible(true);
+                }
+
             }
         }
     }
