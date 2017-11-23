@@ -9,10 +9,15 @@ public class FillListener extends WindowAdapter implements ActionListener{
     SubjectFrame sf;
     FillFrame ff;
     DatabaseHandler dbms;
+    String user;
+    int actionFlag,quesNum;
 
-    public FillListener(SubjectFrame sf,DatabaseHandler dbms){
+    public FillListener(SubjectFrame sf,String user,DatabaseHandler dbms,int actionFlag,int quesNum){
         this.sf=sf;
         this.dbms=dbms;
+        this.user=user;
+        this.actionFlag=actionFlag;
+        this.quesNum=quesNum;
     }
 
     public void actionPerformed(ActionEvent buttonPressed){
@@ -27,13 +32,21 @@ public class FillListener extends WindowAdapter implements ActionListener{
                 ff.setVisible(true);//Refreshing the window.
             }
             else{
-                System.out.println("Adding to Question Bank");
-                //Have to link with dataBase.
-                //System.out.println("Adding Fill "+fHalf+"  "+lHalf);
-                dbms.database.addFillQuest(fHalf,lHalf,ansC);
-                dbms.writeUserDatabase();//hatho-hath likh bhi do yar
-                ff.setVisible(false);
-                sf.setVisible(true);
+                if(actionFlag==1){
+                    System.out.println("Adding to Question Bank");
+                    //Have to link with dataBase.
+                    //System.out.println("Adding Fill "+fHalf+"  "+lHalf);
+                    dbms.database.addFillQuest(fHalf,lHalf,ansC);
+                    dbms.writeUserDatabase();//hatho-hath likh bhi do yar
+                    ff.setVisible(false);
+                    sf.setVisible(true);
+                }
+                else if(actionFlag==3){
+                    dbms.database.modifyFillQuest(quesNum,fHalf,lHalf,ansC);
+                    dbms.writeUserDatabase();
+                    ff.setVisible(false);
+                    sf.setVisible(true);
+                }
             }
         }
         else if(cmd.equals("Cancel")){

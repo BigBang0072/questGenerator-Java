@@ -121,7 +121,22 @@ public class ModifyListener extends WindowAdapter implements ActionListener,Item
                     mf.setVisible(false);
                     tf.setVisible(true);
                 }
+                else if(typeQ==3){
+                    String beforeQuest=dbms.database.fill[quesNo].beforeQuest;
+                    String afterQuest=dbms.database.fill[quesNo].afterQuest;
+                    String ans=dbms.database.fill[quesNo].ans;
 
+                    FillListener fIsner=new FillListener(sf,user,dbms,3,quesNo);
+                    FillFrame ff=new FillFrame(user,fIsner);
+
+                    ff.fHalfF.setText(beforeQuest);
+                    ff.lHalfF.setText(afterQuest);
+                    ff.ansCF.setText(ans);
+
+                    fIsner.addFrames(ff);
+                    mf.setVisible(false);
+                    ff.setVisible(true);
+                }
             }
         }
     }

@@ -56,7 +56,7 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
             }
             else if(typeQ==3){//True/False
                 System.out.println("Inside Fill in the Blanks!!");
-                FillListener fIsner=new FillListener(sf,dbms);
+                FillListener fIsner=new FillListener(sf,user,dbms,actionFlag,-1);
                 FillFrame ff=new FillFrame(user,fIsner);
                 fIsner.addFrames(ff);
                 sf.setVisible(false);
