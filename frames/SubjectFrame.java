@@ -5,6 +5,7 @@ import java.awt.*;
 public class SubjectFrame extends Frame{
     //Instance Variable
     TextField quesNumF;
+    Label quesNumLF;
 
     public SubjectFrame(String name,String subject,SubjectListener sIsner){
         setLayout(new BorderLayout());
@@ -140,6 +141,7 @@ public class SubjectFrame extends Frame{
         paneGenerate.add(fillIn,constraint);
 
         Label quesNumL=new Label("No. of Ques : ");
+        this.quesNumLF=quesNumL;
         quesNumL.setFont(optFont);
         constraint.gridx=0;
         constraint.gridy=4;

@@ -92,14 +92,22 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
             //Frame for initial construction. Also a random number gen is
             //needed.
             int quesNoTemp=Integer.parseInt(sf.quesNumF.getText());//Have to take this input from gui.
+            int quesNoAvbl=dbms.database.filled[typeQ-1];
             //and hanfle when it exceeds the total max.
-            ExportListener eIsner=new ExportListener(sf);
-            ExportFrame efQues=new ExportFrame(user,quesNoTemp,eIsner);
-            ExportFrame efSoln=new ExportFrame(user,quesNoTemp,eIsner);
-            efSoln.viewF.setLabel("View Question");
-            eIsner.addFrames(efQues,efSoln);
-            sf.setVisible(false);
-            efQues.setVisible(true);
+            if(quesNoAvbl<quesNoTemp){
+                sf.quesNumLF.setText("Given Number Exceeds Available Question in Bank!");
+                sf.setVisible(false);
+                sf.setVisible(true);//refreshing.
+            }
+            else{
+                ExportListener eIsner=new ExportListener(sf);
+                ExportFrame efQues=new ExportFrame(user,quesNoTemp,eIsner);
+                ExportFrame efSoln=new ExportFrame(user,quesNoTemp,eIsner);
+                efSoln.viewF.setLabel("View Question");
+                eIsner.addFrames(efQues,efSoln);
+                sf.setVisible(false);
+                efQues.setVisible(true);
+            }
         }
         else if(cmd.equals("Delete!!")){
             System.out.println("Inside Delete");
