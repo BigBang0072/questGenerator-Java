@@ -4,6 +4,7 @@ import java.lang.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.io.*;
 import frames.filehandle.*;
 
 public class ExportListener extends WindowAdapter implements ActionListener{
@@ -14,6 +15,7 @@ public class ExportListener extends WindowAdapter implements ActionListener{
     String user;
     int typeQ,quesReq;
     DatabaseHandler dbms;
+    int[] randSeq;
 
     public ExportListener(SubjectFrame sf,String user,int quesReq,int typeQ,DatabaseHandler dbms){
         this.sf=sf;
@@ -25,7 +27,7 @@ public class ExportListener extends WindowAdapter implements ActionListener{
 
     public void fillTheQuestionPaper(){
         int quesTotal=dbms.database.filled[typeQ-1];//Exclusive of that value
-        int[] randSeq=new int[quesReq];
+        randSeq=new int[quesReq];
         getRandomSeq(quesReq,quesTotal,randSeq);
 
         for(int i=0;i<quesReq;i++){
@@ -152,7 +154,7 @@ public class ExportListener extends WindowAdapter implements ActionListener{
 
     public void actionPerformed(ActionEvent buttonPress){
         String cmd=buttonPress.getActionCommand();
-        if(cmd.equals("Cancel")){
+        if(cmd.equals("Back")){
             System.out.println("Exiting you to subject Window");
             efQues.setVisible(false);
             efSoln.setVisible(false);
@@ -170,11 +172,38 @@ public class ExportListener extends WindowAdapter implements ActionListener{
         }
         else if(cmd.equals("Export Soln to File")){
             System.out.println("have to export File to the System.");
-
+            System.out.println("have to export file to the System");
+            //File Dialogue has to come.
+            String restPath=sf.extraAddF.getText();
+            //Default path start from desktop for good visulisation
+            String fullPath="/home/abhinav/Desktop/"+restPath;
+            File dir=new File(fullPath);
+            if(dir.exists()){
+                System.out.println("path of saving QSolution is: "+fullPath);
+            }
+            else{
+                dir.mkdirs();
+                System.out.println("The path didnt existed so directory created at: "+fullPath);
+            }
+            ExportHandle exHandle=new ExportHandle(dbms,randSeq,typeQ,dir);
+            exHandle.writeSolutionToFile();
         }
         else if(cmd.equals("Export Ques to File")){
             System.out.println("have to export file to the System");
             //File Dialogue has to come.
+            String restPath=sf.extraAddF.getText();
+            //Default path start from desktop for good visulisation
+            String fullPath="/home/abhinav/Desktop/"+restPath;
+            File dir=new File(fullPath);
+            if(dir.exists()){
+                System.out.println("path of saving QPapers is: "+fullPath);
+            }
+            else{
+                dir.mkdirs();
+                System.out.println("The path didnt existed so directory created at: "+fullPath);
+            }
+            ExportHandle exHandle=new ExportHandle(dbms,randSeq,typeQ,dir);
+            exHandle.writeQuestionToFile();
         }
         else if(cmd.equals("Reshuffle")){
             //AHve to reshuffle the random number array to get hte

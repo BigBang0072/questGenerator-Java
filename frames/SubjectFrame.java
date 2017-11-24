@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class SubjectFrame extends Frame{
     //Instance Variable
-    TextField quesNumF;
+    TextField quesNumF,extraAddF;
     Label quesNumLF;
 
     public SubjectFrame(String name,String subject,SubjectListener sIsner){
@@ -263,11 +263,31 @@ public class SubjectFrame extends Frame{
         interCons.gridy=1;
         paneC.add(paneDelete,interCons);
 
+        //SouthPanel (for taking the address)
+        Panel paneS=new Panel(new GridBagLayout());
+        paneS.setBackground(Color.white);
+
+        Label startL=new Label("Directory to Save Ouestion Paper(default is) @: /home/abhinav/Desktop/");
+        startL.setFont(new Font("Plain",Font.BOLD,15));
+        constraint.gridy=0;
+        constraint.gridx=0;
+        constraint.weightx=0;
+        paneS.add(startL,constraint);
+
+        TextField extraAdd=new TextField(50);
+        this.extraAddF=extraAdd;
+        constraint.gridx=1;
+        constraint.gridy=0;
+        constraint.weightx=0;
+        paneS.add(extraAdd,constraint);
+
+
 
 
         add(paneT,BorderLayout.NORTH);
         add(paneW,BorderLayout.WEST);
         add(paneC,BorderLayout.CENTER);
+        add(paneS,BorderLayout.SOUTH);
         setTitle("Welcome To "+subject);
         setSize(1500,800);
         addWindowListener(sIsner);

@@ -22,7 +22,7 @@ public class ExportFrame extends Frame{
         constraint.gridy=0;
         paneT.add(greetL,constraint);
 
-        Button goBackB=new Button("Cancel");
+        Button goBackB=new Button("Back");
         goBackB.addActionListener(eIsner);
         Font buttonFont=new Font("Plain",Font.BOLD,15);
         constraint.gridx=1;
