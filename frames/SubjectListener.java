@@ -100,11 +100,12 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
                 sf.setVisible(true);//refreshing.
             }
             else{
-                ExportListener eIsner=new ExportListener(sf);
+                ExportListener eIsner=new ExportListener(sf,quesNoTemp,typeQ,dbms);
                 ExportFrame efQues=new ExportFrame(user,quesNoTemp,eIsner);
                 ExportFrame efSoln=new ExportFrame(user,quesNoTemp,eIsner);
                 efSoln.viewF.setLabel("View Question");
                 eIsner.addFrames(efQues,efSoln);
+                eisner.fillTheQuestionPaper();
                 sf.setVisible(false);
                 efQues.setVisible(true);
             }

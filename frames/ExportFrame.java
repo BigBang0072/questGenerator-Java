@@ -5,6 +5,7 @@ import java.awt.*;
 public class ExportFrame extends Frame{
     //Instance Variable
     Button viewF;
+    Panel paneCF;
 
     public ExportFrame(String name,int totalQuest,ExportListener eIsner){
         setLayout(new BorderLayout());
@@ -34,8 +35,12 @@ public class ExportFrame extends Frame{
         //Center Panel (main challenge)
         ScrollPane scrollP=new ScrollPane();
         Panel paneC=new Panel(new GridBagLayout());
+        this.paneCF=paneC;
         paneC.setBackground(Color.lightGray);
 
+        //Again taking the monkey buisness to the Listener frame.
+
+        /*
         GridBagConstraints interPanelCon=new GridBagConstraints();
         for(int i=0;i<totalQuest;i++){
             Panel pTemp=new Panel(new GridBagLayout());
@@ -54,7 +59,7 @@ public class ExportFrame extends Frame{
             interPanelCon.weighty=0.5;
             interPanelCon.weightx=0;
             paneC.add(pTemp,interPanelCon);
-        }
+        }*/
         scrollP.add(paneC);
 
 
