@@ -5,6 +5,7 @@ import java.awt.*;
 public class DeleteFrame extends Frame{
     //Instance Variable
     Label msgF;
+    List questListF;
 
     public DeleteFrame(String name,int totalQuest,DeleteListener dIsner){
         //Top Panel: coustamary Welcome.
@@ -33,8 +34,12 @@ public class DeleteFrame extends Frame{
         paneC.setBackground(Color.lightGray);
 
         List questList=new List(totalQuest);
+        this.questListF=questList;
         questList.addItemListener(dIsner);
         questList.setFont(genFont);
+        //This monkey buisnes has to happen in listener
+        //by dynamically listing all the question from the database.
+        /*
         for(int i=0;i<totalQuest;i++){
             if(i<9){
                 questList.add("0"+(i+1)+"        First line");
@@ -42,7 +47,7 @@ public class DeleteFrame extends Frame{
             else{
                 questList.add((i+1)+"        First line");
             }
-        }
+        }*/
         constraint.gridx=0;
         constraint.gridy=0;
         constraint.weightx=0.5;

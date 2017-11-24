@@ -105,9 +105,10 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
             System.out.println("Inside Delete");
             //Same task as Modify
             int quesNoTemp=20;
-            DeleteListener dIsner=new DeleteListener(sf);
+            DeleteListener dIsner=new DeleteListener(sf,typeQ,dbms);
             DeleteFrame df=new DeleteFrame(user,quesNoTemp,dIsner);
             dIsner.addFrames(df);
+            dIsner.fillTheQuestionList();
             sf.setVisible(false);
             df.setVisible(true);
         }

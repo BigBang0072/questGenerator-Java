@@ -3,15 +3,49 @@ package frames;
 import java.lang.*;
 import java.awt.*;
 import java.awt.event.*;
+import frames.filehandle.*;
 
 public class DeleteListener extends WindowAdapter implements ActionListener,ItemListener{
     //Instance Varaible
     SubjectFrame sf;
     DeleteFrame df;
     int quesNo=-1;
+    DatabaseHandler dbms;
+    int typeQ;
 
-    public DeleteListener(SubjectFrame sf){
+    public DeleteListener(SubjectFrame sf,int typeQ,DatabaseHandler dbms){
         this.sf=sf;
+        this.typeQ=typeQ;
+        this.dbms=dbms;
+    }
+
+    public void fillTheQuestionList(){
+        int totalQNow=dbms.database.filled[typeQ-1];
+        System.out.println("Total question in Existance of Type :"+typeQ+" is: "+totalQNow);
+        for(int i=1;i<=totalQNow;i++){
+            if(i<10){
+                if(typeQ==1){
+                    df.questListF.add("0"+i+" "+dbms.database.mcq[i-1].quest);
+                }
+                else if(typeQ==2){
+                    df.questListF.add("0"+i+" "+dbms.database.tf[i-1].quest);
+                }
+                else{
+                    df.questListF.add("0"+i+" "+dbms.database.fill[i-1].beforeQuest+" "+dbms.database.fill[i-1].afterQuest);
+                }
+            }
+            else{
+                if(typeQ==1){
+                    df.questListF.add(i+" "+dbms.database.mcq[i-1].quest);
+                }
+                else if(typeQ==2){
+                    df.questListF.add(i+" "+dbms.database.tf[i-1].quest);
+                }
+                else{
+                    df.questListF.add(i+" "+dbms.database.fill[i-1].beforeQuest+" "+dbms.database.fill[i-1].afterQuest);
+                }
+            }
+        }
     }
 
     public void actionPerformed(ActionEvent buttonPressed){
@@ -30,6 +64,28 @@ public class DeleteListener extends WindowAdapter implements ActionListener,Item
             else{
                 System.out.println("Deleting the Question");
                 //Have to handle the database here to delete the question.
+                if(typeQ==1){
+                    System.out.println("Removing question of type :"+typeQ);
+                    dbms.database.removeMCQQuest(quesNo);
+                    //hatho-hath link bhi to karna hai na
+                    dbms.writeUserDatabase();
+                    df.setVisible(false);
+                    sf.setVisible(true);
+                }
+                else if(typeQ==2){
+                    System.out.println("Removing question of type :"+typeQ);
+                    dbms.database.removeTfQuest(quesNo);
+                    dbms.writeUserDatabase();
+                    df.setVisible(false);
+                    sf.setVisible(true);
+                }
+                else if(typeQ==3){
+                    System.out.println("Removing question of type :"+typeQ);
+                    dbms.database.removeFillQuest(quesNo);
+                    dbms.writeUserDatabase();
+                    df.setVisible(false);
+                    sf.setVisible(true);
+                }
             }
         }
     }
