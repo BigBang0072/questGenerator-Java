@@ -11,11 +11,13 @@ public class ExportListener extends WindowAdapter implements ActionListener{
     SubjectFrame sf;
     ExportFrame efQues;
     ExportFrame efSoln;
+    String user;
     int typeQ,quesReq;
     DatabaseHandler dbms;
 
-    public ExportListener(SubjectFrame sf,int quesReq,int typeQ,DatabaseHandler dbms){
+    public ExportListener(SubjectFrame sf,String user,int quesReq,int typeQ,DatabaseHandler dbms){
         this.sf=sf;
+        this.user=user;
         this.quesReq=quesReq;
         this.typeQ=typeQ;
         this.dbms=dbms;
@@ -41,53 +43,61 @@ public class ExportListener extends WindowAdapter implements ActionListener{
                 String optD=dbms.database.mcq[randSeq[i]].optD;
                 String ans=dbms.database.mcq[randSeq[i]].ans;
 
-                Label questL=new Label(quest);
-                Label optAL=new Label("a. "+optA);
-                Label optBL=new Label("b. "+optB);
-                Label optCL=new Label("c. "+optC);
-                Label optDL=new Label("d. "+optD);
+                Label questL=new Label("Ques No "+i+":   "+quest);
+                Label optAL=new Label("Option (a) "+optA);
+                Label optBL=new Label("Option (b) "+optB);
+                Label optCL=new Label("Option (c) "+optC);
+                Label optDL=new Label("Option (d) "+optD);
 
-                //constraint.gridx=0;
-                //constraint.gridy=0;
-                pQTemp.add(questL);
-                pQTemp.add(optAL);
-                pQTemp.add(optBL);
-                pQTemp.add(optCL);
-                pQTemp.add(optDL);
+                constraint.gridx=0;
+                constraint.gridy=1;
+                pQTemp.add(questL,constraint);
+                constraint.gridx=0;
+                constraint.gridy=2;
+                pQTemp.add(optAL,constraint);
+                constraint.gridx=0;
+                constraint.gridy=3;
+                pQTemp.add(optBL,constraint);
+                constraint.gridx=0;
+                constraint.gridy=4;
+                pQTemp.add(optCL,constraint);
+                constraint.gridx=0;
+                constraint.gridy=5;
+                pQTemp.add(optDL,constraint);
 
                 constraint.gridx=0;
                 constraint.gridy=i;
-                constraint.weightx=0.25;
-                constraint.weighty=0;
+                constraint.weightx=0;
+                constraint.weighty=0.25;
                 efQues.paneCF.add(pQTemp,constraint);
 
-                Label ansL=new Label(ans);
+                Label ansL=new Label("Solution "+i+":   "+ans);
                 pSTemp.add(ansL);
                 constraint.gridx=0;
                 constraint.gridy=i;
-                constraint.weightx=0.25;
-                constraint.weighty=0;
+                constraint.weightx=0;
+                constraint.weighty=0.25;
                 efSoln.paneCF.add(pSTemp,constraint);
             }
             else if(typeQ==2){//TRue/False
                 String quest=dbms.database.tf[randSeq[i]].quest;
                 String ans=dbms.database.tf[randSeq[i]].ans;
 
-                Label questL=new Label(quest);
+                Label questL=new Label("Ques No "+i+":   "+quest);
                 pQTemp.add(questL);
 
                 constraint.gridx=0;
                 constraint.gridy=i;
-                constraint.weightx=0.25;
-                constraint.weighty=0;
+                constraint.weightx=0;
+                constraint.weighty=0.25;
                 efQues.paneCF.add(pQTemp,constraint);
 
-                Label ansL=new Label(ans);
+                Label ansL=new Label("Solution "+i+":   "+ans);
                 pSTemp.add(ansL);
                 constraint.gridx=0;
                 constraint.gridy=i;
-                constraint.weightx=0.25;
-                constraint.weighty=0;
+                constraint.weightx=0;
+                constraint.weighty=0.25;
                 efSoln.paneCF.add(pSTemp,constraint);
             }
             else if(typeQ==3){//Fill in the Balnks
@@ -95,21 +105,21 @@ public class ExportListener extends WindowAdapter implements ActionListener{
                 String aQuest=dbms.database.fill[randSeq[i]].afterQuest;
                 String ans=dbms.database.fill[randSeq[i]].ans;
 
-                Label questL=new Label(bQuest+"  "+aQuest);
+                Label questL=new Label("Ques No "+i+":   "+bQuest+"  "+aQuest);
                 pQTemp.add(questL);
 
                 constraint.gridx=0;
                 constraint.gridy=i;
-                constraint.weightx=0.25;
-                constraint.weighty=0;
+                constraint.weightx=0;
+                constraint.weighty=0.25;
                 efQues.paneCF.add(pQTemp,constraint);
 
-                Label ansL=new Label(ans);
+                Label ansL=new Label("Solution "+i+":   "+ans);
                 pSTemp.add(ansL);
                 constraint.gridx=0;
                 constraint.gridy=i;
-                constraint.weightx=0.25;
-                constraint.weighty=0;
+                constraint.weightx=0;
+                constraint.weighty=0.25;
                 efSoln.paneCF.add(pSTemp,constraint);
             }
         }
@@ -134,6 +144,9 @@ public class ExportListener extends WindowAdapter implements ActionListener{
                 randSeq[count]=temp;
                 count++;
             }
+        }
+        for(int i=0;i<quesReq;i++){
+            System.out.println("Rand :"+randSeq[i]);
         }
     }
 
@@ -166,7 +179,14 @@ public class ExportListener extends WindowAdapter implements ActionListener{
         else if(cmd.equals("Reshuffle")){
             //AHve to reshuffle the random number array to get hte
             //new question from bank
+            //Undisplaying the earlier frames
             System.out.println("Reshuffling");
+            efQues.setVisible(false);
+            efSoln.setVisible(false);
+            //Creating new Frame, cuz its appending Panel on the same frame
+            efQues=new ExportFrame(user,quesReq,this);
+            efSoln=new ExportFrame(user,quesReq,this);
+            efSoln.viewF.setLabel("View Question");
             this.fillTheQuestionPaper();
             efQues.setVisible(false);
             efSoln.setVisible(false);
