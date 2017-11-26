@@ -49,6 +49,8 @@ public class ModifyListener extends WindowAdapter implements ActionListener,Item
                 }
             }
         }
+        mf.setVisible(true);
+        mf.setVisible(false);
     }
     public void actionPerformed(ActionEvent buttonPress){
         String cmd=buttonPress.getActionCommand();

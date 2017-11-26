@@ -78,7 +78,8 @@ public class SubjectListener extends WindowAdapter implements ActionListener,Ite
             //also accroding to type of question load the appropraite database.
 
             //We may have to give teh data base handle for it iterate
-            int totalQNow=dbms.database.filled[typeQ-1];
+            //int totalQNow=dbms.database.filled[typeQ-1];
+            int totalQNow=20;
             ModifyListener moIsner=new ModifyListener(sf,user,typeQ,dbms);
             ModifyFrame mof=new ModifyFrame(user,totalQNow,moIsner);
             moIsner.addFrames(mof);

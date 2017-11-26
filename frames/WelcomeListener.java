@@ -33,7 +33,7 @@ public class WelcomeListener extends WindowAdapter implements ActionListener{
             wf.setVisible(false);
             sf.setVisible(true);
         }
-        else if(cmd.equals("Other Subject?(Type and click Go)")){
+        else if(cmd.equals("Other Subject?(Type and click HERE)")){
             String newSubj=wf.otherF.getText();
             System.out.println("Inside "+newSubj);
             SubjectListener sIsner=new SubjectListener(lf,wf,user,newSubj);

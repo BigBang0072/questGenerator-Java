@@ -69,7 +69,7 @@ public class WelcomeFrame extends Frame{
         constraint.gridy=3;
         paneC.add(otherTF,constraint);
 
-        Button otherB=new Button("Other Subject?(Type and click Go)");
+        Button otherB=new Button("Other Subject?(Type and click HERE)");
         otherB.addActionListener(wIsner);
         otherB.setFont(subFont);
         constraint.gridx=1;
