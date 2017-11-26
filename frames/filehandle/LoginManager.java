@@ -34,7 +34,15 @@ public class LoginManager implements Serializable{
     }
     //If availble free to create new or not.(meaning, free-yes.)
     public boolean checkNameAvailable(String userName){
-        return !credentials.containsKey(userName);
+        try{
+            return !credentials.containsKey(userName);
+        }
+        catch(NullPointerException npe){
+            //If there is no file also to check
+            System.out.println("NullPointerException Checked");
+            return true;
+        }
+
     }
 
     public void addUser(String userName,String password){

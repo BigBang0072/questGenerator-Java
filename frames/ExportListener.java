@@ -107,7 +107,7 @@ public class ExportListener extends WindowAdapter implements ActionListener{
                 String aQuest=dbms.database.fill[randSeq[i]].afterQuest;
                 String ans=dbms.database.fill[randSeq[i]].ans;
 
-                Label questL=new Label("Ques No "+i+":   "+bQuest+"  "+aQuest);
+                Label questL=new Label("Ques No "+i+":   "+bQuest+"______"+aQuest);
                 pQTemp.add(questL);
 
                 constraint.gridx=0;
